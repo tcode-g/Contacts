@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Contact Hub</title>
+	<title>Comet Contacts</title>
 	<script type="text/javascript" src="js/md5.js"></script>
 	<script type="text/javascript" src="js/code.js"></script>
     <link href="css/styles.css" rel="stylesheet">	
@@ -8,10 +8,25 @@
 </head>
 <body>
 
-<h1 id="title">Contact Hub</h1>
+<!-- Moon icon -->
+<img src="images/icone-de-la-lune.png" alt = "Comet Contacts logo" id="logo">
 
+<!-- Title -->
+<h1 id="title">Comet Contacts</h1>
+
+<!-- Login Section -->
 <div id="loginDiv">
 	<span id="inner-title">Log in</span>
+	<input type="text" id="loginName" placeholder="Username" /><br />
+	<input type="password" id="loginPassword" placeholder="Password"/><br />
+	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
+	<span id="loginResult"></span>
+</div>
+
+<!-- Signup Section -->
+<!-- Currently this is the exact same as loginDiv, it will be changed -->
+<div id="signupDiv">
+	<span id="inner-title">Sign Up</span>
 	<input type="text" id="loginName" placeholder="Username" /><br />
 	<input type="password" id="loginPassword" placeholder="Password"/><br />
 	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
