@@ -9,16 +9,16 @@ if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
 } else {
 	$stmt = $conn->prepare("SELECT * from Contacts WHERE UserId = ?");
-	$stmt->bind_param("s", $userId);
+	$stmt->bind_param("i", $userId);
 	$stmt->execute();
 	$result = $stmt->get_result();
 
 	if ($result->num_rows > 0) {
-		$retValue = '{items: [ '. implode($result->fetch_all()) . ']}';
+		$contacts = $result->fetch_all(MYSQLI_ASSOC);
+		$retValue = json_encode(["items" => $contacts]);
 		sendResultInfoAsJson($retValue);
 	} else {
-		// returnWithError("No Records Found");
-		echo $userId;
+		returnWithError("No Records Found");
 	}
 
 	$stmt->close();
