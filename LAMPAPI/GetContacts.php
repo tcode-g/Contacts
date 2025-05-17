@@ -17,7 +17,8 @@ if ($conn->connect_error) {
 		$retValue = '{items: [ '. implode($result->fetch_all()) . ']}';
 		sendResultInfoAsJson($retValue);
 	} else {
-		returnWithError("No Records Found");
+		// returnWithError("No Records Found");
+		echo $userId;
 	}
 
 	$stmt->close();
