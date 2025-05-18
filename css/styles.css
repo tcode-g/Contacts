@@ -49,10 +49,11 @@ body
 
 #title 
 {
-    margin-top: 5rem;
-    font-size: 10rem;
+    margin-top: 0rem;
+    font-size: 12rem;
     font-weight: 1000;
     font-family: 'Orbitron', sans-serif;
+    text-align: center;
 }
 
 .nav-link:link
