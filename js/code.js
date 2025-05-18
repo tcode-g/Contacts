@@ -68,7 +68,7 @@ let newLastName = document.getElementById("lastName").value;
 let newLogin = document.getElementById("userName").value;
 let newPassword = document.getElementById("newPassword").value;
 var hash = md5( newPassword );
-document.getElementById("loginResult").innerHTML = "";
+document.getElementById("signUpResult").innerHTML = "";
 
 var tmp = {firstname:newFirstName, lastname:newLastName, login:newLogin, password:hash};
 let jsonPayload = JSON.stringify( tmp );
