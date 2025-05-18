@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 
 	if ($result->num_rows > 0) {
 		$contacts = $result->fetch_all(MYSQLI_ASSOC);
-		$retValue = json_encode(["items" => $contacts]);
+		$retValue = json_encode(["contacts" => $contacts]);
 		sendResultInfoAsJson($retValue);
 	} else {
 		returnWithError("No Records Found");
@@ -27,7 +27,8 @@ if ($conn->connect_error) {
 
 function getRequestInfo()
 {
-	return json_decode(file_get_contents('php://input'), true);
+	// return json_decode(file_get_contents('php://input'), true);
+	return json_decode(file_get_contents('php://input'), true);	
 }
 
 function sendResultInfoAsJson($obj)
