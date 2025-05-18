@@ -68,7 +68,7 @@ let newLastName = document.getElementById("lastName").value;
 let newLogin = document.getElementById("userName").value;
 let newPassword = document.getElementById("newPassword").value;
 var hash = md5( newPassword );
-document.getElementById("signUpResult").innerHTML = "";
+document.getElementById("loginResult").innerHTML = "";
 
 var tmp = {firstname:newFirstName, lastname:newLastName, login:newLogin, password:hash};
 let jsonPayload = JSON.stringify( tmp );
@@ -87,10 +87,10 @@ try
 	
 			if( eFlag > 0 )
 			{		
-				document.getElementById("signUpResult").innerHTML = "User already exists";
+				document.getElementById("loginResult").innerHTML = "User already exists";
 				return;
 			} else {
-				document.getElementById("signUpResult").innerHTML = "new User added";
+				document.getElementById("loginResult").innerHTML = "new User added";
 			}
 			
 		}
@@ -99,7 +99,7 @@ try
 }
 catch(err)
 {
-	document.getElementById("signUpResult").innerHTML = err.message;
+	document.getElementById("loginResult").innerHTML = err.message;
 }
 
 }
