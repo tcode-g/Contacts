@@ -2,7 +2,7 @@
 
 $inData = getRequestInfo();
 
-$userId = $inData["ID"];
+$userId = $inData["UserId"];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
