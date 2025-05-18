@@ -14,10 +14,13 @@ if ($conn->connect_error) {
     $stmt->execute();
     $result = $stmt->get_result();
     if (mysqli_affected_rows($conn) > 0) {
-        $retVal = json_encode(["success" => true]);
+        $retVal = json_encode(["error" => false]);
         sendResultInfoAsJson($retVal);
     } else {
-        returnWithError("Contact not found");
+        $retVal = json_encode(["error" => true, "error_message" => "Contact not found."]);
+        sendResultInfoAsJson($retVal);
+
+        // returnWithError("Contact not found");
     }
 
     $stmt->close();

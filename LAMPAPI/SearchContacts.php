@@ -17,10 +17,11 @@ if ($conn->connect_error) {
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
 		$contacts = $result->fetch_all(MYSQLI_ASSOC);
-		$retValue = json_encode(["contacts" => $contacts]);
+		$retValue = json_encode(["error" => false, "contacts" => $contacts]);
 		sendResultInfoAsJson($retValue);
 	} else {
-		returnWithError("No Records Found");
+		$retValue = json_encode(["error"=> true, "error_message" => "No records found."]);
+		sendResultInfoAsJson($retValue);
 	}
 
 	$stmt->close();
