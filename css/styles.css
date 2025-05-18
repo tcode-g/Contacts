@@ -1,17 +1,30 @@
+/* Background color*/
 body 
 {
     background-color: #161631;
 }
 
-#logo
+/* Background image*/
+#cometBackground
 {
     position: fixed;
-    top: 0px;
-    left: 0px;
-    height: 200px;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: url("/images/cometbackground.png") center/cover no-repeat;
+}
+
+/* Comet logo */
+#logo
+{
+    position: static;
+    height: 48px;
     width: auto;
 }
 
+/* Middle title */
 #title 
 {
     font-size: 100px;
@@ -19,8 +32,9 @@ body
     margin: 2% auto;
     text-align: center;
     font-family: 'Monaco', sans-serif;
-    color: #ffef76;
+    color: #FC6E51;
 }
+
 
 #loginDiv
 {
