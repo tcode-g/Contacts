@@ -7,31 +7,18 @@
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
-	}
-	else
-	{
-		$stmt = $conn->prepare("SELECT 1 FROM Users WHERE Login=?");	// mysql statement to search if user exists
-		$stmt->bind_param("s", $inData["login"]);	
+	} else {
+		$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?) ");	// mysql statement to add new user record.
+		$stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["login"], $inData["password"]);	
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-		if( mysqli_num_rows($result) < 1) // new user
-		{
-			$istmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?) ");	// mysql statement to add new user record.
-	    	$istmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["login"], $inData["password"]);
-            $istmt->execute();
-		    $iresult = $istmt->get_result();
-            if(mysqli_stmt_execute($istmt)){
-				returnwithInfo($inData["firstname"], $inData["lastname"], $inData["login"]);	// return with info of new added user.
-            } else {
-                returnWithError(mysqli_stmt_error($istmt)); 
-            }
-			$istmt->close();
-		}
-		else
-		{
-			returnWithError("User already exists");
-		}
+	        if(mysqli_stmt_execute($stmt)){
+			returnwithInfo($inData["firstname"], $inData["lastname"], $inData["login"]);	// return with info of new added user.
+	        } else {
+			returnWithError(mysqli_stmt_error($istmt)); 
+	    	}
+		
 		
 		$stmt->close();
 		$conn->close();
