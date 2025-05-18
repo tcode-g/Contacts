@@ -16,7 +16,7 @@
 	        if(mysqli_stmt_execute($stmt)){
 			returnwithInfo($inData["firstname"], $inData["lastname"], $inData["login"]);	// return with info of new added user.
 	        } else {
-			returnWithError(mysqli_stmt_error($istmt)); 
+			returnWithError(mysqli_stmt_error($stmt)); 
 	    	}
 		
 		
