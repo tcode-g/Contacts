@@ -1,3 +1,6 @@
+/* For title font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 /* Background color*/
 body 
 {
@@ -16,25 +19,68 @@ body
     background: url("/images/cometbackground.png") center/cover no-repeat;
 }
 
-/* Comet logo */
+#topBar .row1
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#topBar .row2
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #logo
 {
-    position: static;
-    height: 48px;
+    margin-left: 1rem;
+    height: 10rem;
     width: auto;
 }
 
-/* Middle title */
+/* Removes flash on click, better experience */
+.logo-link:active, .logo-link:focus
+{
+    outline: none;
+    background: none;
+}
+
 #title 
 {
-    font-size: 100px;
-    width: 100%;
-    margin: 2% auto;
+    margin-top: 0rem;
+    font-size: 12rem;
+    font-weight: 1000;
+    font-family: 'Orbitron', sans-serif;
     text-align: center;
-    font-family: 'Monaco', sans-serif;
+}
+
+.nav-link:link
+{
+    text-decoration: none;
+    color: #FC6E51;
+    transition: color 0.2s ease;
+}
+
+/* Without this is snaps back to yellow instantly */
+.nav-link:hover, .nav-link:visited:hover 
+{
+  color: #ffffff;
+}
+
+.nav-link:visited
+{
     color: #FC6E51;
 }
 
+#loginSignup
+{
+    font-size: 3.1rem;
+    margin-right: 1rem;
+    font-weight: 550;
+    font-family: 'Orbitron', sans-serif;
+}
 
 #loginDiv
 {

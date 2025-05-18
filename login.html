@@ -8,33 +8,49 @@
 </head>
 <body>
 
-<!-- Moon icon -->
-<img src="images/icone-de-la-lune.png" alt = "Comet Contacts logo" id="logo">
+<!-- Header section -->
+<header id="topBar">
+	<!-- First row, containing top bar -->
+	 <div class="row1">
+		<!-- Logo left side -->
+		<a href="index.html" class="logo-link">
+			<img src="images/comet.png" alt = "Comet Contacts logo" id="logo">
+		</a>
+	 </div>
+</header>
 
-<!-- Title -->
-<h1 id="title">Comet Contacts</h1>
+<!-- authentication panel containing login and signup forms-->
+<div id="authPanel">
+	<!-- Login/Signup button -->
+	<div id="loginDiv" class ="authForm">
+		<span class="inner-title">LOGIN</span>
+        <input type="text" id="loginName" placeholder="Username" /><br />
+        <input type="password" id="loginPassword" placeholder="Password"/><br />
+        <button type="button" id="loginButton" class="buttons" onclick="doLogin();">LOGIN</button>
+        <span id="loginResult"></span>
+        <a href="#" onclick="toggleAuth('signup'); return false;">SIGNUP</a>
+    </div>
 
-<!-- Login Section -->
-<div id="loginDiv">
-	<span id="inner-title">Log in</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
-	<span id="loginResult"></span>
+	<!-- Signup form -->
+	<div id="signupDiv" class="authForm" style="display:none;">
+        <span class="inner-title">SIGNUP</span>
+        <input type="text" id="firstName" placeholder="First Name" /><br />
+        <input type="text" id="lastName" placeholder="Last Name" /><br />
+        <input type="text" id="userName" placeholder="Username" /><br />
+        <input type="password" id="newPassword" placeholder="Password"/><br />
+        <button type="button" id="signUpButton" class="buttons" onclick="signup();">SIGNUP</button>
+        <span id="signUpResult"></span>
+        <a href="#" onclick="toggleAuth('login'); return false;">LOGIN</a>
+    </div>
 </div>
 
-<!-- Signup Section -->
-<!-- Currently this is the exact same as loginDiv, it will be changed -->
-<!-- This is a test added code -->
-<div id="signupDiv">
-	<span id="inner-title">Sign Up</span>
-	<input type="text" id="firstName" placeholder="FirstName" /><br />
-	<input type="text" id="lastName" placeholder="LastName" /><br />
-	<input type="text" id="userName" placeholder="UserName" /><br />
-	<input type="password" id="newPassword" placeholder="nPassword"/><br />
-	<button type="button" id="signUpButton" class="buttons" onclick="signup();"> sign up </button>
-	<span id="signUpResult"></span>
-</div>
+<script>
+function toggleAuth(mode) {
+    document.getElementById('loginDiv').style.display = (mode === 'login') ? 'block' : 'none';
+    document.getElementById('signupDiv').style.display = (mode === 'signup') ? 'block' : 'none';
+}
+</script>
+
 
 </body>
 </html>
