@@ -40,6 +40,13 @@ body
     width: auto;
 }
 
+/* Removes flash on click, better experience */
+.logo-link:active, .logo-link:focus
+{
+    outline: none;
+    background: none;
+}
+
 #title 
 {
     margin-top: 5rem;
