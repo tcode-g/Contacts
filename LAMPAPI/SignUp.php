@@ -1,6 +1,6 @@
 
 <?php
-
+	try{
 	$inData = getRequestInfo();	// get input.
 	
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); // connect to database.	
@@ -46,5 +46,9 @@
 		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","login":"' . $slogin . '","error":"","flag":0}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+	} catch(Exception $error) {
+		header('Content-type: application/json');
+		$retValue = '{"error":"'.$error->getMessage().'"};
+  		echo $retValue;
+	}	
 ?>
