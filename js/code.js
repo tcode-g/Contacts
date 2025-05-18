@@ -72,7 +72,7 @@ document.getElementById("loginResult").innerHTML = "";
 
 var tmp = {firstname:newFirstName, lastname:newLastName, login:newLogin, password:hash};
 let jsonPayload = JSON.stringify( tmp );
-let url = urlBase + '/Signup.' + extension;
+let url = urlBase + '/SignUp.' + extension;
 let xhr = new XMLHttpRequest();
 xhr.open("POST", url, true);
 xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
