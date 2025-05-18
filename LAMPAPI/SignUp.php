@@ -3,8 +3,6 @@
 
 	$inData = getRequestInfo();	// get input.
 	
-
-
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); // connect to database.	
 	if( $conn->connect_error )
 	{
@@ -52,13 +50,13 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"error":"' . $err . '","flag":1}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
 	function returnWithInfo( $firstName, $lastName, $slogin )
 	{ 
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","lastName":"' . $slogin . '","error":""}';
+		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","lastName":"' . $slogin . '","error":"","flag":0}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
