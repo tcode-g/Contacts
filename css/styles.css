@@ -112,6 +112,17 @@ input[type="text"],input[type="password"]{
     color: #ffef76;
 }
 
+#signUpResult{
+    display: inline-block;
+    font-size: 0.8em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    font-family: 'Monaco', sans-serif;
+    color: #ffef76;
+}
+
 #userName{
     display: inline-block;
     width: 80%;
