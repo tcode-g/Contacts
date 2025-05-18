@@ -8,33 +8,31 @@
 </head>
 <body>
 
-<!-- Moon icon -->
-<img src="images/icone-de-la-lune.png" alt = "Comet Contacts logo" id="logo">
+<!-- Background -->
+<div id="cometBackground"></div>
 
-<!-- Title -->
-<h1 id="title">Lomet Contacts</h1>
+<!-- Header section -->
+<header id="homeScreenTop">
+	<!-- First row -->
+	 <div class="row1">
+		<!-- Image left side -->
+		<img src="images/icone-de-la-lune.png" alt = "Comet Contacts logo" id="logo">
+		
+		<!-- Title in middle -->
+		<h1 id="title">Comet Contacts</h1>
 
-<!-- Login/Signup button -->
+		<!-- Signup right side -->
+		<a id="loginSignup" href="login.html">Login&nbsp;/&nbsp;Signup</a>
 
-<!-- THIS SECTION WILL NOT BE HERE IN FINAL VERSION, PURELY FOR TESTING-->
-<!-- Login Section -->
-<div id="loginDiv">
-	<span id="inner-title">Log in</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
-	<span id="loginResult"></span>
-</div>
+	 </div>
 
-<!-- Signup Section -->
-<!-- Currently this is the exact same as loginDiv, it will be changed -->
-<div id="signupDiv">
-	<span id="inner-title">Sign Up</span>
-	<input type="text" id="loginName" placeholder="Username" /><br />
-	<input type="password" id="loginPassword" placeholder="Password"/><br />
-	<button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Do It </button>
-	<span id="loginResult"></span>
-</div>
+
+	<!-- Second row -->
+	<div class="row2">
+		<!-- Link to our GitHub repo-->
+		<a id="githubLink" href="https://github.com/tcode-g/Contacts" target="_blank">GitHub</a>
+	</div>
+</header>
 
 </body>
 </html>
