@@ -5,6 +5,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let isRunning = false;
 let eFlag = 0;
 
 function doLogin()
@@ -63,6 +64,10 @@ function doLogin()
 //added code
 function signup()
 {
+if(isRunning){
+	return;
+}
+isRunning = true;	
 let newFirstName = document.getElementById("firstName").value;
 let newLastName = document.getElementById("lastName").value;
 let newLogin = document.getElementById("userName").value;
