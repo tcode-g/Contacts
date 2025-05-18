@@ -5,6 +5,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let eFlag = 0;
 
 function doLogin()
 {
@@ -58,6 +59,51 @@ function doLogin()
 	}
 
 }
+
+//added code
+function signup()
+{
+let newFirstName = document.getElementById("firstName").value;
+let newLastName = document.getElementById("lastName").value;
+let newLogin = document.getElementById("userName").value;
+let newPassword = document.getElementById("newPassword").value;
+var hash = md5( newPassword );
+document.getElementById("loginResult").innerHTML = "";
+
+var tmp = {firstname:newFirstName, lastname:newLastName, login:newLogin, password:hash};
+let jsonPayload = JSON.stringify( tmp );
+let url = urlBase + '/Signup.' + extension;
+let xhr = new XMLHttpRequest();
+xhr.open("POST", url, true);
+xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+try
+{
+	xhr.onreadystatechange = function() 
+	{
+		if (this.readyState == 4 && this.status == 200) 
+		{
+			let jsonObject = JSON.parse( xhr.responseText );
+			eFlag = jsonObject.flag;
+	
+			if( eFlag > 0 )
+			{		
+				document.getElementById("signUpResult").innerHTML = "User already exists";
+				return;
+			} else {
+				document.getElementById("signUpResult").innerHTML = "new User added";
+			}
+			
+		}
+	};
+	xhr.send(jsonPayload);
+}
+catch(err)
+{
+	document.getElementById("signUpResult").innerHTML = err.message;
+}
+
+}
+// added code ends
 
 function saveCookie()
 {
