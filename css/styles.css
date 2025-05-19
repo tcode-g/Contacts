@@ -1,8 +1,8 @@
-/* || For title font || */
+/* || For title font */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 
-/* || All pages || */
+/* || All pages */
 /* Background color*/
 body 
 {
@@ -92,7 +92,7 @@ body
     border-radius: 25px;
     width: 50%;
     margin-left: 25%;
-    font-family: 'Monaco', sans-serif;
+    font-family: 'Verdana', sans-serif;
 }
 
 .buttons:hover{
@@ -102,7 +102,7 @@ body
 }
 
 
-/* || contacts.html || */
+/* || contacts.html */
 #loggedInDiv
 {
     font-size: 30px;
@@ -154,11 +154,11 @@ body
     margin-left: 5%;
     margin-top: 2%;
     margin-bottom: 1%;
-    font-family: 'Monaco', sans-serif;
+    font-family: 'Verdana', sans-serif;
     color: #95060a;
 }
 
-/* || login.html || */
+/* || login.html */
 #loginName
 {
 	font-size: 30px;
@@ -169,52 +169,54 @@ body
 	font-size: 30px;
 }
 
-/* input in the login authForm */
+/* input in the login and signup authForm */
 input[type="text"],input[type="password"]
 {
-    border-radius: 250px;
+    border-radius: 0.9rem;
     text-align: center;
     width: 80%;
     margin: 0 auto 2%; /* For future reference, this is top 0, left-right auto, and bottom 2 percent*/
-    font-family: 'Monaco', sans-serif;
+    font-family: 'Verdana', sans-serif;
     display: block; /* Without this auto margins don't work */
 }
 
 /* Title inside authForm */
-#inner-title
+.inner-title
 {
     display: inline-block;
-    font-size: 50px;
-    width: 90%;
+    font-size: 4rem;
+    font-weight: 1000;
+    width: 100%;
+    margin-bottom: 1.8rem;
     text-align: center;
-    margin: 5%;
-    margin-bottom: 4%;
-    font-family: 'Monaco', sans-serif;
-    color: #ffef76;
+    font-family: 'Orbitron', sans-serif;
+    color: #161631;
 }
 
 /* Maybe combine loginResult and signUpResult into one class, not sure if possible yet */
 #loginResult
 {
     display: inline-block;
-    font-size: 0.8em;
+    font-size: 1em;
     width: 90%;
     text-align: center;
     margin-left: 5%;
+    margin-top: 2%;
     margin-bottom: 2%;
-    font-family: 'Monaco', sans-serif;
-    color: #ffef76;
+    font-family: 'Verdana', sans-serif;
+    color: #161631;
 }
 #signUpResult
 {
     display: inline-block;
-    font-size: 0.8em;
+    font-size:1em;
     width: 90%;
     text-align: center;
     margin-left: 5%;
+    margin-top: 2%;
     margin-bottom: 2%;
-    font-family: 'Monaco', sans-serif;
-    color: #ffef76;
+    font-family: 'Verdana', sans-serif;
+    color: #161631;
 }
 
 /* Username on signup specifically */
@@ -229,23 +231,21 @@ input[type="text"],input[type="password"]
 /* Login and signup panel */
 #authPanel
 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 40rem;
-    width: 25rem;
-    background-color: #FC6E51;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the panel*/
+
+    padding: 3rem 2rem;
+
+    background-color:#FC6E51;
+    border-radius: 1.5rem;
 }
 
 /* Login form and signup form specifically */
-#authForm
+.authForm
 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    margin-left: 25%;
-    background-color: #ffef76;
+    width: 25rem;
+    margin: 1.5rem auto;
+    padding: 1rem;
 }

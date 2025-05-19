@@ -235,3 +235,10 @@ function searchColor()
 	}
 	
 }
+
+// Changes Auth window between login and signup
+function toggleAuth(mode) 
+{
+    document.getElementById('loginDiv').style.display = (mode === 'login') ? 'block' : 'none';
+    document.getElementById('signupDiv').style.display = (mode === 'signup') ? 'block' : 'none';
+}
