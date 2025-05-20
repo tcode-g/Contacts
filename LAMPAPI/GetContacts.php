@@ -2,7 +2,7 @@
 
 $inData = getRequestInfo();
 
-$userId = $inData["ID"];
+$userId = $inData["UserId"];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
@@ -15,10 +15,12 @@ if ($conn->connect_error) {
 
 	if ($result->num_rows > 0) {
 		$contacts = $result->fetch_all(MYSQLI_ASSOC);
-		$retValue = json_encode(["contacts" => $contacts]);
+		$retValue = json_encode(["error" => false, "contacts" => $contacts]);
 		sendResultInfoAsJson($retValue);
 	} else {
-		returnWithError("No Records Found");
+		$retValue = json_encode(["error"=> true, "error_message" => "No records found."]);
+		sendResultInfoAsJson($retValue);
+		// returnWithError("No Records Found");
 	}
 
 	$stmt->close();

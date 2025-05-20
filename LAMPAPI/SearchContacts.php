@@ -3,31 +3,38 @@
 $inputData = getRequestInfo();
 
 $userId = $inputData['userid'];
-$contactId = $inputData['id'];
+$firstName = getKey($inputData, 'firstname');
+$lastName = getKey($inputData, 'lastname');
+
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ? AND UserId = ?;");
-    $stmt->bind_param("ii", $contactId, $userId);
+    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserId = ? AND (FirstName like ? AND LastName like ?);");
+    $stmt->bind_param("iss", $userId, $firstName, $lastName);
     $stmt->execute();
     $result = $stmt->get_result();
-    if (mysqli_affected_rows($conn) > 0) {
-        $retVal = json_encode(["error" => false]);
-        sendResultInfoAsJson($retVal);
-    } else {
-        $retVal = json_encode(["error" => true, "error_message" => "Contact not found."]);
-        sendResultInfoAsJson($retVal);
+    if ($result->num_rows > 0) {
+		$contacts = $result->fetch_all(MYSQLI_ASSOC);
+		$retValue = json_encode(["error" => false, "contacts" => $contacts]);
+		sendResultInfoAsJson($retValue);
+	} else {
+		$retValue = json_encode(["error"=> true, "error_message" => "No records found."]);
+		sendResultInfoAsJson($retValue);
+	}
 
-        // returnWithError("Contact not found");
-    }
-
-    $stmt->close();
+	$stmt->close();
 	$conn->close();
 }
 
-
+function getKey($arr, $key) {
+    if (array_key_exists($key, $arr)) {
+        return $arr[$key] . '%';
+    } else {
+        return '%';
+    }
+}
 function getRequestInfo()
 {
 	// return json_decode(file_get_contents('php://input'), true);
