@@ -37,6 +37,19 @@
 		}
 		else
 		{
+
+			# input validation
+			# input validation
+			$userFlag = 0;
+			$username = $inData["login"];
+            $userFlag += preg_match_all('/\s/', subject: $username); # any space
+            $userFlag += preg_match_all('/^$/', $username); #empty string
+
+            if ( $userFlag > 0) {
+                returnWithError('Invalid username');
+				return;
+            }
+
 			$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?) ");
 			$stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["login"], $inData["password"]);
 			$stmt->execute();
