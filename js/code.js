@@ -5,6 +5,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let isRunning = false;
 let eFlag = 0;
 
 function doLogin()
@@ -63,6 +64,10 @@ function doLogin()
 //added code
 function signup()
 {
+if(isRunning){
+	return;
+}
+isRunning = true;	
 let newFirstName = document.getElementById("firstName").value;
 let newLastName = document.getElementById("lastName").value;
 let newLogin = document.getElementById("userName").value;
@@ -229,4 +234,11 @@ function searchColor()
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
 	
+}
+
+// Changes Auth window between login and signup
+function toggleAuth(mode) 
+{
+    document.getElementById('loginDiv').style.display = (mode === 'login') ? 'block' : 'none';
+    document.getElementById('signupDiv').style.display = (mode === 'signup') ? 'block' : 'none';
 }

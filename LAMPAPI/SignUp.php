@@ -39,7 +39,6 @@
 		{
 
 			# input validation
-			# input validation
 			$userFlag = 0;
 			$username = $inData["login"];
             $userFlag += preg_match_all('/\s/', subject: $username); # any space

@@ -1,6 +1,8 @@
-/* For title font */
+/* || For title font */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
+
+/* || All pages */
 /* Background color*/
 body 
 {
@@ -26,6 +28,7 @@ body
     justify-content: space-between;
 }
 
+/* Not on all pages */
 #topBar .row2
 {
     display: flex;
@@ -56,6 +59,15 @@ body
     text-align: center;
 }
 
+#loginSignup
+{
+    margin-right: 1rem;
+    font-size: 3.1rem;
+    font-weight: 1000;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
+}
+
 .nav-link:link
 {
     text-decoration: none;
@@ -74,23 +86,23 @@ body
     color: #FC6E51;
 }
 
-#loginSignup
-{
-    font-size: 3.1rem;
-    margin-right: 1rem;
-    font-weight: 550;
-    font-family: 'Orbitron', sans-serif;
-}
-
-#loginDiv
+.buttons
 {
     font-size: 30px;
-    width: 70%;
-    margin: 2% auto;
-    padding: 25px;
-    background-color: #292939;
+    border-radius: 25px;
+    width: 50%;
+    margin-left: 25%;
+    font-family: 'Verdana', sans-serif;
 }
 
+.buttons:hover{
+    background-color: #00d5124f;
+    color: #FFFFFF;
+    opacity: 100%;
+}
+
+
+/* || contacts.html */
 #loggedInDiv
 {
     font-size: 30px;
@@ -109,105 +121,32 @@ body
     background-color: #b2b2b2;
 }
 
-.buttons
-{
-    font-size: 30px;
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-    font-family: 'Monaco', sans-serif;
-}
-
-.buttons:hover{
-    background-color: #00d5124f;
-    color: #FFFFFF;
-    opacity: 100%;
-}
-
-#loginName
-{
-	font-size: 30px;
-}
-#loginPassword
-{
-	font-size: 30px;
-}
-#searchText
-{
-	font-size: 30px;
-}
+/* Will be contact text */
 #colorText
 {
 	font-size: 30px;
 }
 
-input[type="text"],input[type="password"]{
-    border-radius: 25px;
-    text-align: center;
-    width: 80%;
-    margin: 0 auto 2%; /* For future reference, this is top 0, left-right auto, and bottom 2 percent*/
-    font-family: 'Monaco', sans-serif;
-    display: block; /* Without this auto margins don't work */
+#searchText
+{
+	font-size: 30px;
 }
 
-#inner-title{
-    display: inline-block;
-    font-size: 50px;
-    width: 90%;
-    text-align: center;
-    margin: 5%;
-    margin-bottom: 4%;
-    font-family: 'Monaco', sans-serif;
-    color: #ffef76;
-}
-
-#loginResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Monaco', sans-serif;
-    color: #ffef76;
-}
-
-#signUpResult{
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Monaco', sans-serif;
-    color: #ffef76;
-}
-
-#userName{
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
-    text-align: center;
-}
-
-#logoutButton{
+#logoutButton
+{
     width: 20%;
     margin-left: 40%;
 }
 
-select{
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Monaco', sans-serif;
-}
-
-#colorSearchResult{
+/* Will be contact search result */
+#colorSearchResult
+{
     display: none;
 }
 
-#colorAddResult{
+/* Will be contact add result */
+#colorAddResult
+{
     display: inline-block;
     font-size: 0.8em;
     width: 90%;
@@ -215,6 +154,98 @@ select{
     margin-left: 5%;
     margin-top: 2%;
     margin-bottom: 1%;
-    font-family: 'Monaco', sans-serif;
+    font-family: 'Verdana', sans-serif;
     color: #95060a;
+}
+
+/* || login.html */
+#loginName
+{
+	font-size: 30px;
+}
+
+#loginPassword
+{
+	font-size: 30px;
+}
+
+/* input in the login and signup authForm */
+input[type="text"],input[type="password"]
+{
+    border-radius: 0.9rem;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto 2%; /* For future reference, this is top 0, left-right auto, and bottom 2 percent*/
+    font-family: 'Verdana', sans-serif;
+    display: block; /* Without this auto margins don't work */
+}
+
+/* Title inside authForm */
+.inner-title
+{
+    display: inline-block;
+    font-size: 4rem;
+    font-weight: 1000;
+    width: 100%;
+    margin-bottom: 1.8rem;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #161631;
+}
+
+/* Maybe combine loginResult and signUpResult into one class, not sure if possible yet */
+#loginResult
+{
+    display: inline-block;
+    font-size: 1em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: 'Verdana', sans-serif;
+    color: #161631;
+}
+#signUpResult
+{
+    display: inline-block;
+    font-size:1em;
+    width: 90%;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-family: 'Verdana', sans-serif;
+    color: #161631;
+}
+
+/* Username on signup specifically */
+#userName
+{
+    display: inline-block;
+    width: 80%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+/* Login and signup panel */
+#authPanel
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the panel*/
+
+    padding: 3rem 2rem;
+
+    background-color:#FC6E51;
+    border-radius: 1.5rem;
+}
+
+/* Login form and signup form specifically */
+.authForm
+{
+    width: 25rem;
+    margin: 1.5rem auto;
+    padding: 1rem;
 }
