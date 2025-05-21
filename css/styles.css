@@ -39,7 +39,7 @@ body
 #logo
 {
     margin-left: 1rem;
-    height: 10rem;
+    height: clamp(3rem, 10rem, 10rem); /* Using clamp instead of just rem for better scaling */
     width: auto;
 }
 
@@ -53,7 +53,7 @@ body
 #title 
 {
     margin-top: 0rem;
-    font-size: 12rem;
+    font-size: clamp(5rem, 12rem, 12rem); /* Using clamp instead of just rem for better scaling */
     font-weight: 1000;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
@@ -86,13 +86,20 @@ body
     color: #FC6E51;
 }
 
+/* Signup and login are the only butons currently, this will be changed if needed */
 .buttons
 {
-    font-size: 30px;
-    border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
-    font-family: 'Verdana', sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 100%;
+    padding: 1rem;
+    border: none; /* Border is ugly without this */
+    border-radius: 0.5rem;
+    background-color: #161631; /* Comet orange */
+    color: #FC6E51;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .buttons:hover{
@@ -239,13 +246,45 @@ input[type="text"],input[type="password"]
     padding: 3rem 2rem;
 
     background-color:#FC6E51;
-    border-radius: 1.5rem;
+    border-radius: 0.7rem;
 }
 
 /* Login form and signup form specifically */
 .authForm
 {
     width: 25rem;
-    margin: 1.5rem auto;
+    margin: auto 2rem;
     padding: 1rem;
+}
+
+/* toggle between login and signup */
+.authForm a {
+    display: block; /* Makes the link take up the whole width */
+    text-align: center;
+    margin-top: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 2rem; /* Making this pretty big, it's important they see */
+    color: #161631;
+    text-decoration: none; /* No underline */
+    transition: color 0.2s ease, text-shadow 0.2s ease; /* Transition like with nav-link */
+}
+
+/* When you hover, turn the link white like with all other links */
+.authForm a:hover,
+.authForm a:focus {
+    color: #FFFFFF;
+}
+
+.authForm input[type="text"],
+.authForm input[type="password"] 
+{
+    width: 100%; /* Sizes the box nicely */
+    padding: 1rem; /* Sizes the box nicely */
+    margin-bottom: 1rem; /* Spaces out boxes */
+    border: 0.2rem solid #161631; /* Use our background color as a border */
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    font-family: 'Verdana', sans-serif;
+    color: #161631;
 }
