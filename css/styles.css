@@ -86,8 +86,8 @@ body
     color: #FC6E51;
 }
 
-/* Signup and login are the only butons currently, this will be changed if needed */
-.buttons
+/* Signup and login are the only butons I want this to apply for, I'll make a class for them later */
+.authButtons
 {
     font-size: 2rem;
     font-weight: bold;

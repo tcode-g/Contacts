@@ -27,7 +27,7 @@
 		<span class="inner-title">LOGIN</span>
         <input type="text" id="loginName" placeholder="Username" /><br />
         <input type="password" id="loginPassword" placeholder="Password"/><br />
-        <button type="button" id="loginButton" class="buttons" onclick="doLogin();">LOGIN</button>
+        <button type="button" id="loginButton" class="authButtons" onclick="doLogin();">LOGIN</button>
         <span id="loginResult"></span>
         <a href="#" onclick="toggleAuth('signup'); return false;">SIGNUP INSTEAD</a>
     </div>
@@ -39,7 +39,7 @@
         <input type="text" id="signupLastName" placeholder="Last Name" /><br />
         <input type="text" id="signupUserName" placeholder="Username" /><br />
         <input type="password" id="signupNewPassword" placeholder="Password"/><br />
-        <button type="button" id="signUpButton" class="buttons" onclick="signup();">SIGNUP</button>
+        <button type="button" id="signUpButton" class="authButtons" onclick="signup();">SIGNUP</button>
         <span id="signUpResult"></span>
         <a href="#" onclick="toggleAuth('login'); return false;">LOGIN INSTEAD</a>
     </div>
