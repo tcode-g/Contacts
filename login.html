@@ -29,19 +29,19 @@
         <input type="password" id="loginPassword" placeholder="Password"/><br />
         <button type="button" id="loginButton" class="buttons" onclick="doLogin();">LOGIN</button>
         <span id="loginResult"></span>
-        <a href="#" onclick="toggleAuth('signup'); return false;">SIGNUP</a>
+        <a href="#" onclick="toggleAuth('signup'); return false;">SIGNUP INSTEAD</a>
     </div>
 
 	<!-- Signup form -->
 	<div id="signupDiv" class="authForm" style="display:none;">
         <span class="inner-title">SIGNUP</span>
-        <input type="text" id="firstName" placeholder="First Name" /><br />
-        <input type="text" id="lastName" placeholder="Last Name" /><br />
-        <input type="text" id="userName" placeholder="Username" /><br />
-        <input type="password" id="newPassword" placeholder="Password"/><br />
+        <input type="text" id="signupFirstName" placeholder="First Name" /><br />
+        <input type="text" id="signupLastName" placeholder="Last Name" /><br />
+        <input type="text" id="signupUserName" placeholder="Username" /><br />
+        <input type="password" id="signupNewPassword" placeholder="Password"/><br />
         <button type="button" id="signUpButton" class="buttons" onclick="signup();">SIGNUP</button>
         <span id="signUpResult"></span>
-        <a href="#" onclick="toggleAuth('login'); return false;">LOGIN</a>
+        <a href="#" onclick="toggleAuth('login'); return false;">LOGIN INSTEAD</a>
     </div>
 </div>
 

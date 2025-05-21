@@ -91,11 +91,11 @@ function signup()
 
 				if (eFlag > 0)
 				{
-					document.getElementById("loginResult").innerHTML = "User already exists";
+					document.getElementById("signupResult").innerHTML = "User already exists";
 					return;
 				}
 				else {
-					document.getElementById("loginResult").innerHTML = "new User added";
+					document.getElementById("signupResult").innerHTML = "new User added";
 				}
 			}
 		};
