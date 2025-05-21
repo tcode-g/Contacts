@@ -7,6 +7,7 @@ let firstName = "";
 let lastName = "";
 let isRunning = false;
 let eFlag = 0;
+let jData = [];
 
 function doLogin()
 {
@@ -242,3 +243,104 @@ function toggleAuth(mode)
     document.getElementById('loginDiv').style.display = (mode === 'login') ? 'block' : 'none';
     document.getElementById('signupDiv').style.display = (mode === 'signup') ? 'block' : 'none';
 }
+
+//logic for contact list page
+function getAllContacts()
+{
+	//console.log("fick");
+	let table = "<h2>Contact List</h2>"; 
+	table += "<table border='2' cellspacing='1' cellpadding='8' class='table'>";
+
+	let tmp = {UserId:userId};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/GetContacts.' + extension;
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				//document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				let jsonObject = JSON.parse( xhr.responseText );
+				jData = jsonObject.contacts;
+				table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th></tr>";
+				
+				for( let row=0; row<jsonObject.contacts.length; row++ )
+				{
+					table += `<tr>
+					<td>${jData[row].FirstName}</td>
+					<td>${jData[row].LastName}</td>
+					<td>${jData[row].Phone}</td>
+					<td>${jData[row].Email}</td>
+					</tr>`;
+					
+				}
+				table += "</tr></table>";
+				document.getElementById("contactTable").innerHTML = table;
+				console.log(jData);
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		//document.getElementById("colorSearchResult").innerHTML = err.message;
+	}
+}
+function loadContactForm()
+{
+	let element = document.getElementById("addContact");
+	let form = `<input type="text" id="first" placeholder="FirstName" name="firstName"/><br />
+				<input type="text" id="last" placeholder="LastName" name="lastName"/><br />
+				<input type="text" id="phone" placeholder="Phone" name="phone"/><br />
+				<input type="text" id="email" placeholder="Email" name="email"/><br />
+				<button type="button" id="sub" class="buttons" >Submit</button>`;
+	
+		
+	element.insertAdjacentHTML("beforeend", form);
+
+	document.getElementById("sub").addEventListener('click', function(){ addNewContact(); }, false);
+	
+}
+
+function addNewContact()
+{
+	//e.preventDefault();
+	//console.log("lol");
+	let firstName = document.getElementById("first").value;
+	let lastName = document.getElementById("last").value;
+	let zPhone = document.getElementById("phone").value;
+	let zEmail = document.getElementById("email").value;
+
+	let tmp = {firstname:firstName, lastname:lastName, phone:zPhone, email:zEmail, userid:userId};
+	let jsonPayload = JSON.stringify( tmp );
+	console.log(tmp);
+	let url = urlBase + '/AddContact.' + extension;
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				//successful
+				document.getElementById("addContact").innerHTML = "";
+				getAllContacts(); //update table
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		//failed
+	}
+}
+
+
