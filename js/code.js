@@ -334,3 +334,57 @@ function addNewContact()
 		//failed
 	}
 }
+
+function handleTableEvent(e)
+{
+	if(e.target.classList.contains("edit_button")){
+		updateContact(e.target.closest("tr"));
+	} else if(e.target.classList.contains("del_button")){
+		deleteContact(e.target.closest("tr"));
+	}
+}
+
+function updateContact(row){
+	let oldData1 = row.cells[0].innerText;
+	let oldData2 = row.cells[1].innerText;
+	let oldData3 = row.cells[2].innerText;
+	let oldData4 = row.cells[3].innerText;
+	row.cells[0].innerHTML(`<input type="text" id="iData1" placeholder="${oldData1}" name="firstName"/>`);
+	row.cells[1].innerHTML(`<input type="text" id="iData2" placeholder="${oldData2}" name="lastName"/>`);
+	row.cells[2].innerHTML(`<input type="text" id="iData3" placeholder="${oldData3}" name="phone"/>`);
+	row.cells[3].innerHTML(`<input type="text" id="iData4" placeholder="${oldData4}" name="email"/>`);
+	row.cells[4].innerHTML(`<button type="button" id="confirm" class="buttons" >Confirm</button>`);
+	row.cells[5].innerHTML(`<button type="button" id="cancel" class="buttons" >Cancel</button>`);
+	document.getElementById("confirm").addEventListener('click', function () { editContact(oldData1, oldData2, oldData3, oldData4); }, false);
+	document.getElementById("cancel").addEventListener('click', function () { getAllContacts() }, false);
+	//${jData[row].FirstName}
+}
+
+function editContact(data1, data2, data3, data4) {
+	let data5 = document.getElementById("idata1").value;
+	let data6 = document.getElementById("idata2").value;
+	let data7 = document.getElementById("idata3").value;
+	let data8 = document.getElementById("idata4").value;
+	let tmp = { ofirstname: data1, olastname: data2, ophone: data3, oemail: data4, userid: userId, nfirstname: data5, nlastname: data6, nphone: data7, nemail: data8 };
+	let jsonPayload = JSON.stringify(tmp);
+	
+	let url = urlBase + '/UpdateContact.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				//successful
+				document.getElementById("addContact").innerHTML = "";
+				getAllContacts(); //update table
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch (err) {
+		//failed
+	}
+	getAllContacts();
+}
