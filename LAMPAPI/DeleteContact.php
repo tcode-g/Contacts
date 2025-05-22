@@ -14,13 +14,12 @@ if ($conn->connect_error) {
     $stmt->execute();
     $result = $stmt->get_result();
     if (mysqli_affected_rows($conn) > 0) {
-        $retVal = json_encode(["error" => false]);
-        sendResultInfoAsJson($retVal);
+        returnWithSuccess();
     } else {
-        $retVal = json_encode(["error" => true, "error_message" => "Contact not found."]);
-        sendResultInfoAsJson($retVal);
-
+        // $retVal = json_encode(["error" => true, "error_message" => "Contact not found."]);
         // returnWithError("Contact not found");
+        returnWithError("Contact not found.");
+
     }
 
     $stmt->close();
@@ -39,16 +38,15 @@ function sendResultInfoAsJson($obj)
 	header('Content-type: application/json');
 	echo $obj;
 }
+function returnWithSuccess() {
+    $retVal = json_encode(["error" => false]);
+    sendResultInfoAsJson($retVal);
 
-function returnWithError($err)
-{
-	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-	sendResultInfoAsJson($retValue);
 }
-
-function returnWithInfo($firstName, $lastName, $id)
+function returnWithError( $err )
 {
-	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-	sendResultInfoAsJson($retValue);
+    // $retValue = '{"error":"' . $err . '","flag":1}';
+    $retValue = json_encode(["error"=>true, "error_message" => $err]);
+    sendResultInfoAsJson( $retValue );
 }
 ?>

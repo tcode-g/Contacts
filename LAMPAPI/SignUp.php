@@ -16,13 +16,14 @@
 	
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '","flag":1}';
+		// $retValue = '{"error":"' . $err . '","flag":1}';
+		$retValue = json_encode(["error"=>true, "error_message" => $err]);
 		sendResultInfoAsJson( $retValue );
 	}
 	
 	function returnWithInfo( $firstName, $lastName, $slogin )
 	{ 
-		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","lastName":"' . $slogin . '","error":"","flag":0}';
+		$retValue = '{"firstName":"' . $firstName . '","lastName":"' . $lastName . '","login":"' . $slogin . '","error":false,"flag":0}';
 		sendResultInfoAsJson( $retValue );
 	}
 
@@ -38,7 +39,7 @@
 		else
 		{
 
-			# input validation
+			# username validation
 			$userFlag = 0;
 			$username = $inData["login"];
             $userFlag += preg_match_all('/\s/', subject: $username); # any space
@@ -49,22 +50,30 @@
 				return;
             }
 
+			# password validation
+			$passFlag = 0;
+			$password = $inData['password'];
+			$passFlag += preg_match_all('/^/', $password);
+
+
 			$stmt = $conn->prepare("INSERT INTO Users (FirstName, LastName, Login, Password) VALUES (?, ?, ?, ?) ");
-			$stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $inData["login"], $inData["password"]);
+			$stmt->bind_param("ssss", $inData["firstname"], $inData["lastname"], $username, $password);
 			$stmt->execute();
-			returnwithInfo($inData["firstname"], $inData["lastname"], $inData["login"]);
+			returnwithInfo($inData["firstname"], $inData["lastname"], $username);
 			$stmt->close();
 			$conn->close();
 		}
 	
 
 	} catch(mysqli_sql_exception $err){
-		if($err->getCode() == 1062){
-			$retValue = '{"firstName":"","lastName":"","lastName":"","error":"","flag":1}';
-		} else {
-			$retValue = '{"firstName":"","lastName":"","lastName":"","error":"","flag":2}';
-		}
-		header('Content-type: application/json');
-		echo $retValue;
+		// if($err->getCode() == 1062){
+		// 	$retValue = '{"firstName":"","lastName":"","lastName":"","error":true,"flag":1}';
+		// } else {
+		// 	$retValue = '{"firstName":"","lastName":"","lastName":"","error":true,"flag":2}';
+		// }
+		// $retValue = json_encode(["error"=>true, "message"=> $err->getMessage()]);
+		// header('Content-type: application/json');
+		// echo $retValue;
+		returnWithError("User already exists.");
 	}	
 ?>

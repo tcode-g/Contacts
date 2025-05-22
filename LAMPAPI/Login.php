@@ -38,13 +38,14 @@ function sendResultInfoAsJson($obj)
 
 function returnWithError($err)
 {
-	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+	// $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+	$retValue = json_encode(["error" => true, "error_message" => $err]);
 	sendResultInfoAsJson($retValue);
 }
 
 function returnWithInfo($firstName, $lastName, $id)
 {
-	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":false}';
 	sendResultInfoAsJson($retValue);
 }
 

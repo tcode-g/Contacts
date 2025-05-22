@@ -20,7 +20,7 @@
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
-		returnWithError("");
+		returnWithSuccess();
 	}
 
 	function getRequestInfo()
@@ -34,9 +34,13 @@
 		echo $obj;
 	}
 	
+	function returnWithSuccess() {
+		$retValue = '{"error": false}';
+		sendResultInfoAsJson($retValue);
+	}
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"error":" true, "error_message": ' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 	
