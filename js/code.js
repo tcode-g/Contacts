@@ -261,33 +261,28 @@ function getAllContacts()
 				//document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
 				let jsonObject = JSON.parse(xhr.responseText);
 				jData = jsonObject.contacts;
-							table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th><th></th><th></th></tr>";
-			
-			for( let row=0; row<jsonObject.contacts.length; row++ )
-			{
-				table += `<tr>
-				<td>${jData[row].FirstName}</td>
-				<td>${jData[row].LastName}</td>
-				<td>${jData[row].Phone}</td>
-				<td>${jData[row].Email}</td>
-				<td><button class="edit_button">Update</button></td>
-				<td><button class="del_button">Delete</button></td>
-				</tr>`;
-				
-			}
-			table += "</tr></table>";
-			document.getElementById("contactTable").innerHTML = table;
-			let tableId = document.getElementById("contacts");
-			tableId.addEventListener('click', function(e) { handleTableEvent(e); }, false);
-			console.log(jData);
+				table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th></tr>";
 
-		}
-	};
-	xhr.send(jsonPayload);
-}
-catch(err)
-{
-	//document.getElementById("colorSearchResult").innerHTML = err.message;
+				for (let row = 0; row < jsonObject.contacts.length; row++)
+				{
+					table += `<tr>
+					<td>${jData[row].FirstName}</td>
+					<td>${jData[row].LastName}</td>
+					<td>${jData[row].Phone}</td>
+					<td>${jData[row].Email}</td>
+					</tr>`;
+				}
+				table += "</tr></table>";
+				document.getElementById("contactTable").innerHTML = table;
+				console.log(jData);
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch (err)
+	{
+		//document.getElementById("colorSearchResult").innerHTML = err.message;
+	}
 }
 
 function loadContactForm()
