@@ -1,15 +1,15 @@
 <?php
 	$inData = getRequestInfo();
 	
-	$oldFirstName = $inData["firstname"];
-	$oldLastName = $inData["lastname"];
-	$oldPhone = $inData["phone"];
-	$oldEmail = $inData["email"];
+	$oldFirstName = $inData["ofirstname"];
+	$oldLastName = $inData["olastname"];
+	$oldPhone = $inData["ophone"];
+	$oldEmail = $inData["oemail"];
 	$userId = $inData["userid"];
-  $newFirstName = $inData["firstname"];
-	$newLastName = $inData["lastname"];
-	$newPhone = $inData["phone"];
-	$newEmail = $inData["email"];
+  $newFirstName = $inData["nfirstname"];
+	$newLastName = $inData["nlastname"];
+	$newPhone = $inData["nphone"];
+	$newEmail = $inData["nemail"];
 
 	//$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
     $conn = new mysqli("localhost", "root", "", "myweb");
