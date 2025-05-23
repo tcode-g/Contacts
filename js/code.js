@@ -91,11 +91,11 @@ function signup()
 
 				if (eFlag > 0)
 				{
-					document.getElementById("signupResult").innerHTML = "User already exists";
+					document.getElementById("signUpResult").innerHTML = "User already exists";
 					return;
 				}
 				else {
-					document.getElementById("signupResult").innerHTML = "new User added";
+					document.getElementById("signUpResult").innerHTML = "new User added";
 				}
 			}
 		};
@@ -103,7 +103,7 @@ function signup()
 	}
 	catch (err)
 	{
-		document.getElementById("signupResult").innerHTML = err.message;
+		document.getElementById("signUpResult").innerHTML = err.message;
 	}
 }
 
