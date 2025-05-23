@@ -67,10 +67,10 @@ function signup()
 		return;
 	}
 	isRunning = true;
-	let newFirstName = document.getElementById("firstName").value;
-	let newLastName = document.getElementById("lastName").value;
-	let newLogin = document.getElementById("userName").value;
-	let newPassword = document.getElementById("newPassword").value;
+	let newFirstName = document.getElementById("signupFirstName").value;
+	let newLastName = document.getElementById("signupLastName").value;
+	let newLogin = document.getElementById("signupUserName").value;
+	let newPassword = document.getElementById("signupNewPassword").value;
 	var hash = md5(newPassword);
 	document.getElementById("loginResult").innerHTML = "";
 
