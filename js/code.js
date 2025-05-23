@@ -359,7 +359,7 @@ function editContact(data1, data2, data3, data4) {
 	let data6 = document.getElementById("iData2").value;
 	let data7 = document.getElementById("iData3").value;
 	let data8 = document.getElementById("iData4").value;
-	let tmp = { ofirstname: data1, olastname: data2, ophone: data3, oemail: data4, userId: userId, nfirstname: data5, nlastname: data6, nphone: data7, nemail: data8 };
+	let tmp = { ofirstname: data1, olastname: data2, ophone: data3, oemail: data4, userid: userId, nfirstname: data5, nlastname: data6, nphone: data7, nemail: data8 };
 	let jsonPayload = JSON.stringify(tmp);
 	
 	let url = urlBase + '/UpdateContact.' + extension;
