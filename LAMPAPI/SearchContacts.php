@@ -11,8 +11,10 @@ $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserId = ? AND (FirstName like ? AND LastName like ?);");
-    $stmt->bind_param("iss", $userId, $firstName, $lastName);
+    // modification stats	
+    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserId = ? AND  ( (FirstName like ? AND LastName like ?) OR (FirstName like ? AND LastName like ?) ) ;");
+    $stmt->bind_param("issss", $userId, $firstName, $lastName, $lastName, $firstName);
+    // modification ends	
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
