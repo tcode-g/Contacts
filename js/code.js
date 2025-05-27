@@ -409,7 +409,7 @@ function getIdToDelete(row)
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log("watch");
 				console.log(jsonObject);
-				if(jsonObject.contacts.length == 1)
+				if(jsonObject.contacts.length > 0)
 				{
 					let data = jsonObject.contacts;
 					deleteContact(data[0].ID);
