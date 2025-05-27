@@ -1,5 +1,5 @@
-// const urlBase = 'http://COP4331-5.com/LAMPAPI';
-const urlBase = "http://" + window.location.hostname + "/LAMPAPI";
+const urlBase = 'http://localhost/myprojectlocal/LAMPAPI'
+// const urlBase = "http://" + window.location.hostname + "/LAMPAPI";
 const extension = 'php';
 
 let userId = 0;
@@ -274,6 +274,14 @@ function getAllContacts()
 function loadContactForm()
 {
 	let element = document.getElementById("addContact");
+
+	// Case where the form is already loaded
+	if (document.getElementById("sub"))
+	{
+		return;
+	}
+
+
 	let form = `<input type="text" id="first" placeholder="FirstName" name="firstName"/><br />
 				<input type="text" id="last" placeholder="LastName" name="lastName"/><br />
 				<input type="text" id="phone" placeholder="Phone" name="phone"/><br />
