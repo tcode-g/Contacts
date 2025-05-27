@@ -1,5 +1,5 @@
-const urlBase = 'http://localhost/myprojectlocal/LAMPAPI'
-// const urlBase = "http://" + window.location.hostname + "/LAMPAPI";
+// const urlBase = 'http://localhost/myprojectlocal/LAMPAPI'
+const urlBase = "http://" + window.location.hostname + "/LAMPAPI";
 const extension = 'php';
 
 let userId = 0;
