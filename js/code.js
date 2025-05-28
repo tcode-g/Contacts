@@ -296,12 +296,15 @@ function loadContactForm()
 	}
 
 
-	let form = `<input type="text" id="first" placeholder="FirstName" name="firstName"/><br />
-				<input type="text" id="last" placeholder="LastName" name="lastName"/><br />
-				<input type="text" id="phone" placeholder="Phone" name="phone"/><br />
-				<input type="text" id="email" placeholder="Email" name="email"/><br />
-				<button type="button" id="sub" class="buttons" >Submit</button>`;
-	
+	let form = `<div class="formRow">
+        			<input type="text" id="first" class="formInput" placeholder="First Name" name="firstName" />
+        			<input type="text" id="last" class="formInput" placeholder="Last Name" name="lastName" />
+        			<input type="text" id="phone" class="formInput" placeholder="XXX-XXX-XXXX" name="phone" />
+        			<input type="text" id="email" class="formInput" placeholder="username@email.com" name="email" />
+      			</div>
+
+				<button type="button" id="sub" class="buttons">Submit</button>`;
+
 		
 	element.insertAdjacentHTML("beforeend", form);
 
@@ -312,7 +315,6 @@ function loadContactForm()
 function addNewContact()
 {
 	//e.preventDefault();
-	console.log("lol");
 	let firstName = document.getElementById("first").value;
 	let lastName = document.getElementById("last").value;
 	let zPhone = document.getElementById("phone").value;
@@ -332,10 +334,11 @@ function addNewContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				//successful
 				document.getElementById("addContact").innerHTML = "";
-				getAllContacts(); //update table
+				getAllContacts();
+				switchMode('search'); // switch to search mode when you hit submit, feels more natural
 			}
+
 		};
 		xhr.send(jsonPayload);
 	}
@@ -542,4 +545,24 @@ function generateTable(jData)
 	document.getElementById("contactTable").innerHTML = table;
 	let tableId = document.getElementById("contacts");
 	tableId.addEventListener('click', function(e) { handleTableEvent(e); }, false);
+}
+
+function switchMode(mode)
+{
+    const addContactForm = document.getElementById('addContact');
+    const searchPanel = document.getElementById('search');
+
+    if (mode === 'add') 
+	{
+        addContactForm.style.display = 'flex';
+        searchPanel.style.display = 'none';
+    } 
+	else 
+	{
+        addContactForm.style.display = 'none';
+        searchPanel.style.display = 'block';
+    }
+
+    document.getElementById('addModeBtn').classList.toggle('active-mode', mode === 'add');
+    document.getElementById('searchModeBtn').classList.toggle('active-mode', mode === 'search');
 }

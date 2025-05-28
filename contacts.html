@@ -26,16 +26,45 @@
 </header>
 
 <div id="loggedInDiv">
-	<span id="userName"></span><br />
-	<input type="text" id="search" placeholder="Search Contact" />
-	<button type="button" id="addButton" class="buttons" onclick="loadContactForm();">Add Contact</button>
-	<form id="addContact">
+	<span id="userName"></span>
 
-	</form>
-	<section id="contactTable">
-	</section>
+		<div id="optionsBar">
+			<button onclick="loadContactForm(), switchMode('add');" class="modeBtn" id="addModeBtn">Add Contacts</button>
+			<button onclick="switchMode('search');" class="modeBtn" id="searchModeBtn">Search Contacts</button>
 
+			
+			<script type="text/javascript">
+				// Upon loading the page, put it in search mode by default
+				document.addEventListener('DOMContentLoaded', function() 
+				{
+					switchMode('search');
+				}, false);
+			</script>
+
+		</div>
+
+	<div id="inputFields">
+		<input type="text" id="search" placeholder="Search Contact" />
+		<form id="addContact"></form>
+
+		<div id="addFields" style="display: none;">
+			<input type="text" id="firstName" placeholder="First Name" />
+			<input type="text" id="lastName" placeholder="Last Name" />
+			<input type="email" id="email" placeholder="Email" />
+			<input type="tel" id="phone" placeholder="Phone Number" />
+		</div>
+	</div>
+
+
+	
 </div>
+
+<div id="loggedInContacts">
+
+  <section id="contactTable"></section>
+</div>
+
+
 
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() 
