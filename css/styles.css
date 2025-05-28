@@ -95,7 +95,7 @@ body
     padding: 1rem;
     border: none; /* Border is ugly without this */
     border-radius: 0.5rem;
-    background-color: #161631; /* Comet orange */
+    background-color: #161631;
     color: #FC6E51;
     font-family: 'Orbitron', sans-serif;
     cursor: pointer;
@@ -110,13 +110,67 @@ body
 
 
 /* || contacts.html */
+
+#search {
+    width: 80%;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-family: 'Verdana', sans-serif;
+    border-radius: 0.5rem;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+#addButton {
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif;
+    padding: 0.8rem 2rem;
+    background-color: #161631;
+    border: none;
+    border-radius: 0.6rem;
+    color: #FC6E51;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#addButton:hover {
+    color: #ffffff;
+}
+
+#userName
+{
+    display: inline-block;
+    font-size: 4rem;
+    font-weight: 1000;
+    width: 100%;
+    margin-bottom: 1.8rem;
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #161631;
+}
+
 #loggedInDiv
 {
-    font-size: 30px;
+    position: fixed;
+    top: 45%;
+    left: 50%;
     width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #b2b2b2;
+    transform: translate(-50%, -50%); /* Centers the panel*/
+
+    padding: 3rem 2rem;
+
+    background-color:#FC6E51;
+    border-radius: 0.7rem;
+
+}
+
+#logoutText
+{
+    margin-right: 1rem;
+    font-size: 3.1rem;
+    font-weight: 1000;
+    font-family: 'Orbitron', sans-serif;
+    text-align: center;
 }
 
 #accessUIDiv
@@ -126,12 +180,6 @@ body
     margin-left: 15%;
     padding: 25px;
     background-color: #b2b2b2;
-}
-
-/* Will be contact text */
-#colorText
-{
-	font-size: 30px;
 }
 
 #searchText
