@@ -248,6 +248,7 @@ function toggleAuth(mode)
 		document.getElementById("signupLastName").addEventListener('input', function() {validateName("signupLastName"); }, false);
 		document.getElementById("signupUserName").addEventListener('input', function() {validateUserName("signupUserName"); }, false);
 		document.getElementById("signupNewPassword").addEventListener('input', function() {validatePassword("signupNewPassword"); }, false);
+		document.getElementById("signupUserName").addEventListener('blur', function() {checkUsername("signupUserName"); }, false);
 	}
 }
 
