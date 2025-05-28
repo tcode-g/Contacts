@@ -83,7 +83,7 @@ function validatePassword(id){
     let currentLength = element.value.length;
     let tempInt = 0;
     if(currentLength < 8 || currentLength > 54 ){
-        document.getElementById("signUpPasswordMsg1").innerHTML = "Passwod should be between 8 and 54 chars";
+        document.getElementById("signUpPasswordMsg1").innerHTML = "Passwod should be between 8 and 54 characters!";
     } else {
         document.getElementById("signUpPasswordMsg1").innerHTML = "";
         tempInt += 1;
@@ -93,22 +93,63 @@ function validatePassword(id){
         document.getElementById("signUpPasswordMsg2").innerHTML = "";
         tempInt += 1;
     } else {
-        document.getElementById("signUpPasswordMsg2").innerHTML = "Pasword should be alphanumeric";
-        
+        document.getElementById("signUpPasswordMsg2").innerHTML = "Pasword should have at least one digit!";
     }
 
-    if(/[^a-zA-Z0-9 ]/g.test(element.value) ){
+    if(/[A-Z]/g.test(element.value) && /[a-z]/g.test(element.value)){
         document.getElementById("signUpPasswordMsg3").innerHTML = "";
         tempInt += 1;
     } else {
-        document.getElementById("signUpPasswordMsg3").innerHTML = "Password should have special chars";
-        
+        document.getElementById("signUpPasswordMsg3").innerHTML = "At least one uppercase and one lowercase character!";
     }
-    if(tempInt == 3){
+    
+
+    if(/[^a-zA-Z0-9 ]/g.test(element.value) ){
+        document.getElementById("signUpPasswordMsg4").innerHTML = "";
+        tempInt += 1;
+    } else {
+        document.getElementById("signUpPasswordMsg4").innerHTML = "Password should have at least one special character!";
+    }
+    if(tempInt == 4){
         passwordIsValid = true;
     } else {
         passwordIsValid = false;
     }
+}
+
+function checkUsername(){
+    if(!userNameIsValid){
+        return;
+    }
+
+    let loginD = document.getElementById("signupUserName").value;
+    let tmp = { login: loginD};
+	let jsonPayload = JSON.stringify(tmp);
+	let url = urlBase + '/checkUsers.' + extension;
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try
+	{
+		xhr.onreadystatechange = function()
+		{
+			if (this.readyState == 4 && this.status == 200)
+			{
+				let jsonObject = JSON.parse(xhr.responseText);
+                if(jsonObject.UserIsFound)
+                {
+                    userNameIsValid = false;
+                    document.getElementById("signUpUnameMsg").innerHTML = "Username already exists";
+                }			
+
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch (err)
+	{
+		console.log(err.message);
+	}
 }
 
 function checkSignUpForm(){
