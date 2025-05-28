@@ -66,6 +66,12 @@ function signup()
 	if (isRunning) {
 		return;
 	}
+
+	if(!checkSignUpForm()){
+		document.getElementById("signUpResult").innerHTML = "invalid data";
+		return;
+	} 
+	
 	isRunning = true;
 	let newFirstName = document.getElementById("signupFirstName").value;
 	let newLastName = document.getElementById("signupLastName").value;
@@ -95,7 +101,8 @@ function signup()
 					return;
 				}
 				else {
-					document.getElementById("signUpResult").innerHTML = "new User added";
+					document.getElementById("loginResult").innerHTML = "new User added";
+					toggleAuth('login');
 				}
 			}
 		};
@@ -236,6 +243,12 @@ function toggleAuth(mode)
 {
 	document.getElementById('loginDiv').style.display = (mode === 'login') ? 'block' : 'none';
 	document.getElementById('signupDiv').style.display = (mode === 'signup') ? 'block' : 'none';
+	if(mode == 'signup'){
+		document.getElementById("signupFirstName").addEventListener('input', function() {validateName("signupFirstName"); }, false);
+		document.getElementById("signupLastName").addEventListener('input', function() {validateName("signupLastName"); }, false);
+		document.getElementById("signupUserName").addEventListener('input', function() {validateUserName("signupUserName"); }, false);
+		document.getElementById("signupNewPassword").addEventListener('input', function() {validatePassword("signupNewPassword"); }, false);
+	}
 }
 
 //logic for contact list page
