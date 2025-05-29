@@ -9,6 +9,21 @@ let isRunning = false;
 let eFlag = 0;
 let jData = [];
 
+function addKeyDownEvent() 
+{
+	document.addEventListener('keydown', function(e) {getKey(e); }, false);
+}
+
+function getKey(e)
+{
+	
+	if(e.key == "Enter"){
+		doLogin();
+	}
+}
+
+
+
 function doLogin()
 {
 	userId = 0;
@@ -17,6 +32,12 @@ function doLogin()
 
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
+
+	if(login.length < 1 || password.length < 1){
+		document.getElementById("loginResult").innerHTML = "Missing input fields";
+		return;
+	}
+	
 	var hash = md5(password);
 
 	document.getElementById("loginResult").innerHTML = "";
