@@ -99,11 +99,23 @@ body
 
 
 /* || contacts.html */
+.update_text
+{
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    font-family: 'Verdana', sans-serif;
+    background-color: #161631;
+    color: #ffffff;
+    border-radius: 0.5rem;
+    border: 1px solid #FC6E51;
+    width: 90%;
+}
+
 #loggedInContacts
 {
     background-color: #2a2a50;
     border-radius: 0.8rem;
-    box-shadow: 0 4px 15px #5f1d10; /* Nice shadow, makes it look nicer */
+    /*box-shadow: 0 4px 15px #5f1d10; Should we keep this shadow? */
     max-height: 67vh;
     overflow-y: auto;
     font-family: 'Verdana', sans-serif;
@@ -148,7 +160,7 @@ body
     text-align: center; /* Centers the buttons */
 }
 
-#contacts button.edit_button, #contacts button.del_button
+#contacts button.edit_button, #contacts button.del_button, #contacts button.confirm_button, #contacts button.cancel_button
 {
     background-color: #161631;
     border: 1px solid #FC6E51;
@@ -162,13 +174,13 @@ body
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#contacts button.edit_button:hover
+#contacts button.edit_button:hover, #contacts button.confirm_button:hover
 {
     background-color: #FC6E51;
     color: #161631;
 }
 
-#contacts button.del_button:hover
+#contacts button.del_button:hover, #contacts button.cancel_button:hover
 {
     background-color: #95060a;
     border-color: #95060a;

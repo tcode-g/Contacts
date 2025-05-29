@@ -390,10 +390,10 @@ function updateContact(row){
 	let oldData3 = row.cells[2].innerText;
 	let oldData4 = row.cells[3].innerText;
 	
-	row.cells[0].innerHTML = `<input type="text" id="iData1" value="${oldData1}" size="${oldData1.length + 10}" name="firstName"/>`;
-	row.cells[1].innerHTML = `<input type="text" id="iData2" value="${oldData2}" size="${oldData2.length + 10}" name="lastName"/>`;
-	row.cells[2].innerHTML = `<input type="text" id="iData3" value="${oldData3}" size="${oldData3.length + 10}" name="phone"/>`;
-	row.cells[3].innerHTML = `<input type="text" id="iData4" value="${oldData4}" size="${oldData4.length + 10}" name="email"/>`;
+	row.cells[0].innerHTML = `<input type="text" id="iData1" class="update_text" value="${oldData1}" size="${oldData1.length + 10}" name="firstName"/>`;
+	row.cells[1].innerHTML = `<input type="text" id="iData2" class="update_text" value="${oldData2}" size="${oldData2.length + 10}" name="lastName"/>`;
+	row.cells[2].innerHTML = `<input type="text" id="iData3" class="update_text" value="${oldData3}" size="${oldData3.length + 10}" name="phone"/>`;
+	row.cells[3].innerHTML = `<input type="text" id="iData4" class="update_text" value="${oldData4}" size="${oldData4.length + 10}" name="email"/>`;
 	row.cells[4].innerHTML = `<button type="button" id="confirm" class="confirm_button" >Confirm</button>
 								<button type="button" id="cancel" class="cancel_button" >Cancel</button>`;
 	document.getElementById("confirm").addEventListener('click', function () { editContact(oldData1, oldData2, oldData3, oldData4); }, false);
