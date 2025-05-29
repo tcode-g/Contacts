@@ -152,6 +152,11 @@ function checkUsername(){
 	}
 }
 
-function checkSignUpForm(){
+/** 
+ * Checks that all form fields have acceptable content in them
+ * If any isValid has a non-truthy value, it will return false
+ * Otherwise, return true
+ */
+function checkSignUpForm() {
     return firstNameIsValid && lastNameIsValid && userNameIsValid && passwordIsValid;
 }
