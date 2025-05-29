@@ -430,7 +430,6 @@ function getIdToDelete(row)
 				{
 					let data = jsonObject.contacts;
 					deleteContact(data[0].ID);
-					
 				} 
 
 				
@@ -528,7 +527,7 @@ function generateTable(jData)
 {
 	let table = ""; 
 	table += "<table id='contacts' border='2' cellspacing='1' cellpadding='8' class='table'>";
-	table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th><th></th><th></th></tr>";	
+	table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th><th></th></tr>";	
 	for( let row=0; row<jData.length; row++ )
 	{
 		table += `<tr>
@@ -536,8 +535,7 @@ function generateTable(jData)
 		<td>${jData[row].LastName}</td>
 		<td>${jData[row].Phone}</td>
 		<td>${jData[row].Email}</td>
-		<td><button class="edit_button">Update</button></td>
-		<td><button class="del_button">Delete</button></td>
+		<td><button class="edit_button">Update</button> <button class="del_button">Delete</button></td>
 		</tr>`;
 		
 	}
