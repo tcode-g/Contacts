@@ -526,7 +526,7 @@ function deleteContact(contactId)
 }
 function generateTable(jData)
 {
-	let table = "<h2>Contact List</h2>"; 
+	let table = ""; 
 	table += "<table id='contacts' border='2' cellspacing='1' cellpadding='8' class='table'>";
 	table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th><th></th><th></th></tr>";	
 	for( let row=0; row<jData.length; row++ )
