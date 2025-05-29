@@ -3,18 +3,24 @@
 $inputData = getRequestInfo();
 
 $userId = $inputData['userid'];
-$firstName = getKey($inputData, 'firstname');
-$lastName = getKey($inputData, 'lastname');
 
+$search = isset($inputData['searchstring']) ? "%" . $inputData['searchstring'] . "%" : "%";
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
 } else {
-    // modification stats	
-    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserId = ? AND  ( (FirstName like ? AND LastName like ?) OR (FirstName like ? AND LastName like ?) ) ;");
-    $stmt->bind_param("issss", $userId, $firstName, $lastName, $lastName, $firstName);
-    // modification ends	
+    // Performs multifield search against contacts of current user
+	$stmt = $conn->prepare("
+	SELECT * FROM Contacts 
+	WHERE UserId = ? AND (
+		FirstName LIKE ? OR
+		LastName LIKE ? OR
+		Phone LIKE ? OR
+		Email LIKE ? OR
+		CONCAT(FirstName, ' ', LastName) LIKE ?
+	)");
+    $stmt->bind_param("isssss", $userId, $search, $search, $search, $search, $search);
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
