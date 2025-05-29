@@ -101,7 +101,7 @@ function signup()
 					return;
 				}
 				else {
-					document.getElementById("loginResult").innerHTML = "new User added";
+					document.getElementById("loginResult").innerHTML = "User created";
 					toggleAuth('login');
 				}
 			}
@@ -356,7 +356,10 @@ function handleTableEvent(e)
 
 		updateContact(e.target.closest("tr"));
 	} else if(e.target.classList.contains("del_button")){
-		getIdToDelete(e.target.closest("tr"));
+		// getIdToDelete(e.target.closest("tr"));
+		let hiddenContactIdElement = e.target.parentElement.parentElement.querySelector("td[contactid]")
+		let contactId = hiddenContactIdElement.getAttribute("contactid")
+		deleteContact(contactId);
 	}
 }
 
@@ -372,8 +375,8 @@ function updateContact(row){
 	row.cells[1].innerHTML = `<input type="text" id="iData2" value="${oldData2}" size="${oldData2.length + 10}" name="lastName"/>`;
 	row.cells[2].innerHTML = `<input type="text" id="iData3" value="${oldData3}" size="${oldData3.length + 10}" name="phone"/>`;
 	row.cells[3].innerHTML = `<input type="text" id="iData4" value="${oldData4}" size="${oldData4.length + 10}" name="email"/>`;
-	row.cells[4].innerHTML = `<button type="button" id="confirm" class="confirm_button" >Confirm</button>`;
-	row.cells[5].innerHTML = `<button type="button" id="cancel" class="cancel_button" >Cancel</button>`;
+	row.cells[4].innerHTML = `<button type="button" id="confirm" class="confirm_button" >Confirm</button>
+								<button type="button" id="cancel" class="cancel_button" >Cancel</button>`;
 	document.getElementById("confirm").addEventListener('click', function () { editContact(oldData1, oldData2, oldData3, oldData4); }, false);
 	document.getElementById("cancel").addEventListener('click', function () { getAllContacts() }, false);
 	//${jData[row].FirstName}
@@ -531,6 +534,7 @@ function generateTable(jData)
 	for( let row=0; row<jData.length; row++ )
 	{
 		table += `<tr>
+		<td hidden contactid=${jData[row].ID}></td>
 		<td>${jData[row].FirstName}</td>
 		<td>${jData[row].LastName}</td>
 		<td>${jData[row].Phone}</td>
