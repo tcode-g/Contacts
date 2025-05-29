@@ -333,9 +333,15 @@ function addNewContact()
 	let zPhone = document.getElementById("phone").value;
 	let zEmail = document.getElementById("email").value;
 
-	let tmp = {firstname:firstName, lastname:lastName, phone:zPhone, email:zEmail, userid:userId};
+	let tmp = {firstname:firstName, 
+		       lastname:lastName, 
+			   phone:zPhone, 
+			   email:zEmail, 
+			   userid:userId};
 	let jsonPayload = JSON.stringify( tmp );
-	console.log(tmp);
+
+	console.log("Adding contact: ", jsonPayload);
+
 	let url = urlBase + '/AddContact.' + extension;
 	
 	let xhr = new XMLHttpRequest();
@@ -357,7 +363,7 @@ function addNewContact()
 	}
 	catch(err)
 	{
-		//failed
+		//failed or contact already existed
 	}
 }
 
