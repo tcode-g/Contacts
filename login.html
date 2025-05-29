@@ -1,59 +1,59 @@
 
 <html>
-    <head>
-        <title>Comet Contacts</title>
-        <script type="text/javascript" src="js/md5.js"></script>
-        <script type="text/javascript" src="js/check.js"></script>
-        <script type="text/javascript" src="js/code.js"></script>
-        <link href="css/styles.css" rel="stylesheet">	
-        <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    </head>
+<head>
+    <title>Comet Contacts</title>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/check.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">	
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+</head>
 
-    <body>
-        <header id="topBar">
-            <div class="row1">
-                <a href="index.html" class="logo-link">
-                    <img src="images/cometClean.png" alt = "Comet Contacts logo" id="logo">
-                </a>
-            </div>
-        </header>
+<body>
+    <header id="topBar">
+        <div class="row1">
+            <a href="index.html" class="logo-link">
+                <img src="images/cometClean.png" alt = "Comet Contacts logo" id="logo">
+            </a>
+        </div>
+    </header>
 
     <div id="authPanel">
-	<div id="loginDiv" class ="authForm">
-		<span class="inner-title">LOGIN</span>
-        <input type="text" id="loginName" placeholder="Username" /><br />
-        <input type="password" id="loginPassword" placeholder="Password"/><br />
-        <button type="button" id="loginButton" class="authButtons" onclick="doLogin();">LOGIN</button>
-        <span id="loginResult"></span>
-        <a href="#" onclick="toggleAuth('signup'); return false;">SIGNUP INSTEAD</a>
+        <div id="loginDiv" class ="authForm">
+            <span class="inner-title">LOGIN</span>
+            <input type="text" id="loginName" placeholder="Username" /><br />
+            <input type="password" id="loginPassword" placeholder="Password"/><br />
+            <button type="button" id="loginButton" class="authButtons" onclick="doLogin();">LOGIN</button>
+            <span id="loginResult"></span>
+            <a href="#" onclick="toggleAuth('signup'); return false;">SIGNUP INSTEAD</a>
+        </div>
+
+
+        <div id="signupDiv" class="authForm" style="display:none;">
+            <span class="inner-title">SIGNUP</span>
+            <input type="text" id="signupFirstName" placeholder="First Name" /><br />
+            <div id="signUpFnameMsg"></div>
+            <input type="text" id="signupLastName" placeholder="Last Name" /><br />
+            <div id="signUpLnameMsg"></div>
+            <input type="text" id="signupUserName" placeholder="Username" /><br />
+            <div id="signUpUnameMsg"></div>
+            <input type="password" id="signupNewPassword" placeholder="Password"/><br />
+            <div id="signUpPasswordMsg1"></div>
+            <div id="signUpPasswordMsg2"></div>
+            <div id="signUpPasswordMsg3"></div>
+        <div id="signUpPasswordMsg4"></div>	
+            <button type="button" id="signUpButton" class="authButtons" onclick="signup();">SIGNUP</button>
+            <span id="signUpResult"></span>
+            <a href="#" onclick="toggleAuth('login'); return false;">LOGIN INSTEAD</a>
+        </div>
     </div>
 
-
-	<div id="signupDiv" class="authForm" style="display:none;">
-        <span class="inner-title">SIGNUP</span>
-        <input type="text" id="signupFirstName" placeholder="First Name" /><br />
-        <div id="signUpFnameMsg"></div>
-        <input type="text" id="signupLastName" placeholder="Last Name" /><br />
-        <div id="signUpLnameMsg"></div>
-        <input type="text" id="signupUserName" placeholder="Username" /><br />
-        <div id="signUpUnameMsg"></div>
-        <input type="password" id="signupNewPassword" placeholder="Password"/><br />
-        <div id="signUpPasswordMsg1"></div>
-        <div id="signUpPasswordMsg2"></div>
-        <div id="signUpPasswordMsg3"></div>
-	<div id="signUpPasswordMsg4"></div>	
-        <button type="button" id="signUpButton" class="authButtons" onclick="signup();">SIGNUP</button>
-        <span id="signUpResult"></span>
-        <a href="#" onclick="toggleAuth('login'); return false;">LOGIN INSTEAD</a>
-    </div>
-</div>
-
-<script type="text/javascript">
-document.addEventListener('keydown', function(e) 
-{
-	getKey(e);
-}, false);
-</script>
+    <script type="text/javascript">
+        document.addEventListener('keydown', function(e) 
+        {
+            getKey(e);
+        }, false);
+    </script>
 	    
 </body>
 </html>
