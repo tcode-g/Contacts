@@ -9,20 +9,12 @@ let isRunning = false;
 let eFlag = 0;
 let jData = [];
 
-function addKeyDownEvent() 
-{
-	document.addEventListener('keydown', function(e) {getKey(e); }, false);
-}
-
 function getKey(e)
 {
-	
 	if(e.key == "Enter"){
 		doLogin();
 	}
 }
-
-
 
 function doLogin()
 {
