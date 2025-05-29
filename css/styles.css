@@ -16,6 +16,7 @@ body
     justify-content: space-between;
 }
 
+/* Not on all pages */
 #topBar .row2
 {
     display: flex;
@@ -26,7 +27,7 @@ body
 #logo
 {
     margin-left: 1rem;
-    height: clamp(3rem, 8vw, 10rem); /* Using clamp instead of just rem for better scaling */
+    height: clamp(3rem, 10rem, 10rem); /* Using clamp instead of just rem for better scaling */
     width: auto;
 }
 
@@ -40,7 +41,7 @@ body
 #title 
 {
     margin-top: 0rem;
-    font-size: clamp(3.5rem, 10vw, 12rem); /* Using clamp instead of just rem for better scaling */
+    font-size: clamp(5rem, 12rem, 12rem); /* Using clamp instead of just rem for better scaling */
     font-weight: 1000;
     font-family: 'Orbitron', sans-serif;
     text-align: center;
@@ -87,13 +88,6 @@ body
     font-family: 'Orbitron', sans-serif;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-/* Hover effect for inactive buttons */
-.authButtons:hover:not(.active-mode)
-{
-    background-color: #2a2a50;
-    color: #ffffff;
 }
 
 .buttons:hover
@@ -150,7 +144,7 @@ body
     background-color: #161631;
     color: #FC6E51;
     font-weight: 700;
-    letter-spacing: 0.05em; /* Looks better with the letters space out a bit */
+    letter-spacing: 0.05em;
 }
 
 /* Pleasant highlight on hover */
@@ -162,8 +156,8 @@ body
 
 #contacts th:last-child, #contacts td:last-child
 {
-    width: 15%;
-    text-align: center;
+    width: 15%; /* Makes the first column wider */
+    text-align: center; /* Centers the buttons */
 }
 
 #contacts button.edit_button, #contacts button.del_button, #contacts button.confirm_button, #contacts button.cancel_button
@@ -445,7 +439,7 @@ input[type="text"],input[type="password"]
 /* Login form and signup form specifically */
 .authForm
 {
-    width: clamp(10rem, 25vw, 25rem);
+    width: 25rem;
     margin: auto 2rem;
     padding: 1rem;
 }

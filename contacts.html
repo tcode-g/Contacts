@@ -1,68 +1,68 @@
 <html>
-<head>
-	<title>COP 4331 LAMP Stack Demo</title>
-	<script type="text/javascript" src="js/code.js"></script>
-	<link href="css/styles.css" rel="stylesheet">	
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	
-	<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function() 
-	{
-		readCookie();
-	}, false);
-	</script>
-</head>
+	<head>
+		<title>COP 4331 LAMP Stack Demo</title>
+		<script type="text/javascript" src="js/code.js"></script>
+		<link href="css/styles.css" rel="stylesheet">	
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		
+		<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() 
+		{
+			readCookie();
+		}, false);
+		</script>
+	</head>
 
-<body>
-	<header id="topBar">
-		<div class="row1">
-			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank" rel="noopener" class="logo-link">
-				<img src="images/cometClean.png" alt = "Comet Contacts logo" id="logo">
-			</a>
+	<body>
+		<header id="topBar">
+			<div class="row1">
+				<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" class="logo-link">
+					<img src="images/cometClean.png" alt = "Comet Contacts logo" id="logo">
+				</a>
 
-			<a id="logoutText" href="login.html" class="nav-link">Log Out</a>
-		</div>
-	</header>
+				<a id="logoutText" href="login.html" class="nav-link">Log Out</a>
+			</div>
+		</header>
 
-	<div id="loggedInDiv">
-		<span id="userName"></span>
-		<div id="optionsBar">
-			<button onclick="loadContactForm(), switchMode('add');" class="modeBtn" id="addModeBtn">Add Contacts</button>
-			<button onclick="switchMode('search');" class="modeBtn" id="searchModeBtn">Search Contacts</button>
+		<div id="loggedInDiv">
+			<span id="userName"></span>
+			<div id="optionsBar">
+				<button onclick="loadContactForm(), switchMode('add');" class="modeBtn" id="addModeBtn">Add Contacts</button>
+				<button onclick="switchMode('search');" class="modeBtn" id="searchModeBtn">Search Contacts</button>
 
-			<script type="text/javascript">
-				// Upon loading the page, put it in search mode by default
-				document.addEventListener('DOMContentLoaded', function() 
-				{
-					switchMode('search');
-				}, false);
-			</script>
-		</div>
+				<script type="text/javascript">
+					// Upon loading the page, put it in search mode by default
+					document.addEventListener('DOMContentLoaded', function() 
+					{
+						switchMode('search');
+					}, false);
+				</script>
+			</div>
 
-		<div id="modeContentWrapper">
-			<div id="inputFields">
-				<input type="text" id="search" placeholder="Search Contact" />
-				<form id="addContact"></form>
+			<div id="modeContentWrapper">
+				<div id="inputFields">
+					<input type="text" id="search" placeholder="Search Contact" />
+					<form id="addContact"></form>
 
-				<div id="addFields" style="display: none;">
-					<input type="text" id="firstName" placeholder="First Name" />
-					<input type="text" id="lastName" placeholder="Last Name" />
-					<input type="email" id="email" placeholder="Email" />
-					<input type="tel" id="phone" placeholder="Phone Number" />
+					<div id="addFields" style="display: none;">
+						<input type="text" id="firstName" placeholder="First Name" />
+						<input type="text" id="lastName" placeholder="Last Name" />
+						<input type="email" id="email" placeholder="Email" />
+						<input type="tel" id="phone" placeholder="Phone Number" />
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div id="loggedInContacts">
-		<section id="contactTable"></section>
-	</div>
+		<div id="loggedInContacts">
+			<section id="contactTable"></section>
+		</div>
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function() 
 		{
 			getAllContacts();
 		}, false);
-	</script>
-</body>
+		</script>
+	</body>
 </html>
