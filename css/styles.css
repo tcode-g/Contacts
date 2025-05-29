@@ -116,6 +116,7 @@ body
     border-collapse: collapse;
     font-size: 1.5rem;
     color: #ffffff;
+    border: 0.1rem solid #4e5071;
 }
 
 /* Headers and cells */
@@ -141,6 +142,12 @@ body
     transition: background-color 0.3s ease;
 }
 
+#contacts th:last-child, #contacts td:last-child
+{
+    width: 15%; /* Makes the first column wider */
+    text-align: center; /* Centers the buttons */
+}
+
 #contacts button.edit_button, #contacts button.del_button
 {
     background-color: #161631;
@@ -151,6 +158,7 @@ body
     padding: 0.4rem 1rem;
     border-radius: 0.5rem;
     cursor: pointer;
+    font-size: 1.2rem;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -187,9 +195,7 @@ body
     background-color: #161631; /* inactive bg */
     color: #FC6E51; /* inactive text color */
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-
-    
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 /* Hover effect for inactive buttons */
@@ -209,19 +215,18 @@ body
 
 #sub 
 {
-    display: inline-block;
+    display: block;
     font-size: 2rem;
     font-weight: bold;
     width: 25%;
-    margin-left: 2%;
     height: 4rem;
-    border: none; /* Border is ugly without this */
+    border: none;
+    margin-left: 1%;
     border-radius: 0.5rem;
     background-color: #FC6E51;
     color: #161631;
     font-family: 'Orbitron', sans-serif;
     cursor: pointer;
-    
 }
 
 #sub:hover
@@ -230,8 +235,6 @@ body
     color: #ffffff;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-
 
 .formRow
 {
@@ -252,12 +255,15 @@ body
 
 }
 
-#modeContentWrapper {
+/* Makes switching between add contacts and search contacts not change position of anything */
+#modeContentWrapper
+{
     min-height: 6.5rem;
     margin-bottom: .5rem;
 }
 
-#search {
+#search
+{
     width: 80%;
     padding: 1rem;
     font-size: 1.2rem;
@@ -267,7 +273,8 @@ body
     margin-bottom: 1rem;
 }
 
-#addButton {
+#addButton
+{
     font-size: 1.2rem;
     font-family: 'Orbitron', sans-serif;
     padding: 0.8rem 2rem;
@@ -350,9 +357,9 @@ input[type="text"],input[type="password"]
     border-radius: 0.9rem;
     text-align: center;
     width: 80%;
-    margin: 0 auto 2%; /* For future reference, this is top 0, left-right auto, and bottom 2 percent*/
+    margin: 0 auto 2%;
     font-family: 'Verdana', sans-serif;
-    display: block; /* Without this auto margins don't work */
+    display: block;
 }
 
 /* Title inside authForm */
