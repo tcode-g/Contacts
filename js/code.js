@@ -459,35 +459,20 @@ function getIdToDelete(row)
 
 }
 
+/**
+ * Searches the database for a match of the search string.
+ * 
+ * Generates table
+ */
 function search()
 {
 
-	let string = document.getElementById("search").value;
-	let arr = string.split(" ");
+	let searchString = document.getElementById("search").value;
 	
-	console.log(arr.length);
-	if(arr.length == 1){
-		firstName = arr[0];
-		lastName = "";
-	} else if(arr.length == 2){
-		if(arr[0] == ""){
-			firstName = arr[1];
-			lastName = ""
-		} else if(arr[1] == ""){
-			firstName = arr[0];
-			lastName = "";
-		} else {
-			firstName = arr[0];
-			lastName = arr[1];
-		}	
-	} else {
-		firstName = "zzzzzzzz@@";
-		lastName = "zzzzzzzzz@@"
-	}
-	console.log(firstName);
-	console.log(lastName);
-	let tmp = {userid: userId, firstname: firstName, lastname: lastName};
+	let tmp = {userid: userId, 
+		       searchstring: searchString};
 	let jsonPayload = JSON.stringify(tmp);
+	console.log("Searching: ", jsonPayload);
 	let url = urlBase + '/SearchContacts.' + extension;
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -496,15 +481,13 @@ function search()
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				//successful
-				console.log(xhr.responseText);
 				let jsonObject = JSON.parse( xhr.responseText );
-				console.log("watch");
-				console.log(jsonObject);
+				console.log("Successful lookup: ", jsonObject);
 				if(jsonObject.contacts.length > 0)
 				{
 					let data = jsonObject.contacts;
 					generateTable(data);
-				} 
+				}
 			}
 		};
 		xhr.send(jsonPayload);
