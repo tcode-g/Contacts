@@ -1,6 +1,7 @@
 // const urlBase = 'http://localhost/myprojectlocal/LAMPAPI'
 const urlBase = "http://" + window.location.hostname + "/LAMPAPI";
 const extension = 'php';
+const limit = 10;
 
 let userId = 0;
 let firstName = "";
@@ -8,6 +9,7 @@ let lastName = "";
 let isRunning = false;
 let eFlag = 0;
 let jData = [];
+let currentOffset = 0;
 
 function getKey(e)
 {
@@ -266,11 +268,11 @@ function toggleAuth(mode)
 }
 
 //logic for contact list page
-function getAllContacts()
+function getAllContacts(dOffset)
 {
 	console.log("fick");
-	document.getElementById("search").addEventListener('input', function() { search(); }, false);
-	let tmp = {UserId:userId};
+	document.getElementById("search").addEventListener('input', function() { search(currentOffset); }, false);
+	let tmp = {UserId:userId, limit:limit, offset:dOffset};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/GetContacts.' + extension;
@@ -286,7 +288,7 @@ function getAllContacts()
 				//document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				jData = jsonObject.contacts;
-				generateTable(jData);
+				generateTable(jData, dOffset, jsonObject.total[0].total_count, "getAllContacts");
 				console.log(jData);
 
 			}
@@ -354,7 +356,7 @@ function addNewContact()
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				document.getElementById("addContact").innerHTML = "";
-				getAllContacts();
+				getAllContacts(currentOffset);
 				switchMode('search'); // switch to search mode when you hit submit, feels more natural
 			}
 
@@ -397,7 +399,7 @@ function updateContact(row){
 	row.cells[4].innerHTML = `<button type="button" id="confirm" class="confirm_button" >Confirm</button>
 								<button type="button" id="cancel" class="cancel_button" >Cancel</button>`;
 	document.getElementById("confirm").addEventListener('click', function () { editContact(oldData1, oldData2, oldData3, oldData4); }, false);
-	document.getElementById("cancel").addEventListener('click', function () { getAllContacts() }, false);
+	document.getElementById("cancel").addEventListener('click', function () { getAllContacts(currentOffset) }, false);
 	//${jData[row].FirstName}
 }
 
@@ -420,7 +422,7 @@ function editContact(data1, data2, data3, data4) {
 				//successful
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log(jsonObject);
-				getAllContacts(); //update table
+				getAllContacts(currentOffset); //update table
 			}
 		};
 		xhr.send(jsonPayload);
@@ -470,13 +472,13 @@ function getIdToDelete(row)
  * 
  * Generates table
  */
-function search()
+function search(dOffset)
 {
 
 	let searchString = document.getElementById("search").value;
 	
 	let tmp = {userid: userId, 
-		       searchstring: searchString};
+		       searchstring: searchString, limit:limit, offset:dOffset};
 	let jsonPayload = JSON.stringify(tmp);
 	console.log("Searching: ", jsonPayload);
 	let url = urlBase + '/SearchContacts.' + extension;
@@ -492,7 +494,7 @@ function search()
 				if(jsonObject.contacts.length > 0)
 				{
 					let data = jsonObject.contacts;
-					generateTable(data);
+					generateTable(data, currentOffset, jsonObject.total[0].total_count, "search");
 				}
 			}
 		};
@@ -519,7 +521,7 @@ function deleteContact(contactId)
 				console.log(xhr.responseText);
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log(jsonObject);
-				getAllContacts();
+				getAllContacts(currentOffset);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -528,7 +530,7 @@ function deleteContact(contactId)
 		//failed
 	}
 }
-function generateTable(jData)
+function generateTable(jData, offset, count, caller)
 {
 	let table = ""; 
 	table += "<table id='contacts' border='2' cellspacing='1' cellpadding='8' class='table'>";
@@ -545,9 +547,72 @@ function generateTable(jData)
 		
 	}
 	table += "</tr></table>";
+
+	table += `<span>Showing entry ${offset + 1} to ${jData.length + offset} out of ${count} total entries<br></span>`;
+	let page = offset / limit + 1;
+	let pageLimit = Math.ceil(count / limit);
+
+	if(page == 1){
+		table += `<span id="pagination">
+		<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
+		<button id="jump">Jump To</button> 
+		<button id="next">Next</button>
+		</span>`;
+	} else if(page == pageLimit){
+		table += `<span id="pagination">
+		<button id="prev">Previous</button>
+		<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
+		<button id="jump">Jump To</button> 
+		</span>`;
+	} else {
+		table += `<span id="pagination">
+		<button id="prev">Previous</button>
+		<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
+		<button id="jump">Jump To</button> 
+		<button id="next">Next</button>
+		</span>`;
+	}
+
+	
 	document.getElementById("contactTable").innerHTML = table;
 	let tableId = document.getElementById("contacts");
 	tableId.addEventListener('click', function(e) { handleTableEvent(e); }, false);
+	document.getElementById("pagination").addEventListener('click', function(e) {handlePaginationEvent(e, page, pageLimit, caller); }, false);
+
+}
+
+function handlePaginationEvent(e, page, pageLimit, caller)
+{
+	console.log(document.getElementById(e.target.id).value);
+	console.log(e.target.value);
+	console.log(pageLimit);
+	let offset = 0;
+	console.log(e.target.id);
+	if(e.target.id == "prev" ){
+		offset = (page - 1) * limit - limit;
+	} else if(e.target.id =="jump"){
+		let tempInput = document.getElementById("pages").value; 
+		if(tempInput > pageLimit || tempInput  == 0){
+			console.log("failure");
+			return;
+		} else {
+			offset = tempInput * limit - limit;
+		}
+		
+	} else if(e.target.id == "next"){
+		offset = (page + 1) * limit - limit;
+	} else {
+		return;
+	}
+	currentOffset = offset;
+	console.log(offset);
+	if(caller == "getAllContacts"){
+		getAllContacts(currentOffset);
+	} else if (caller == "search"){
+		search(currentOffset)
+	}
+
+
 }
 
 function switchMode(mode)
