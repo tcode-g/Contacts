@@ -398,16 +398,21 @@ function updateContact(row){
 	row.cells[3].innerHTML = `<input type="text" id="iData4" class="update_text" value="${oldData4}" size="${oldData4.length + 10}" name="email"/>`;
 	row.cells[4].innerHTML = `<button type="button" id="confirm" class="confirm_button" >Confirm</button>
 								<button type="button" id="cancel" class="cancel_button" >Cancel</button>`;
-	document.getElementById("confirm").addEventListener('click', function () { editContact(oldData1, oldData2, oldData3, oldData4); }, false);
-	document.getElementById("cancel").addEventListener('click', function () { getAllContacts(currentOffset) }, false);
+	let confirmButton = row.querySelector("#confirm"); 
+	confirmButton.addEventListener('click', () => editContact(row, oldData1, oldData2, oldData3, oldData4), false);
+
+	let cancelButton = row.querySelector("#cancel");
+	cancelButton.addEventListener('click', () => getAllContacts(currentOffset) , false);
+	// document.getElementById("confirm").addEventListener('click', function () { editContact(oldData1, oldData2, oldData3, oldData4); }, false);
+	// document.getElementById("cancel").addEventListener('click', function () { getAllContacts(currentOffset) }, false);
 	//${jData[row].FirstName}
 }
 
-function editContact(data1, data2, data3, data4) {
-	let data5 = document.getElementById("iData1").value;
-	let data6 = document.getElementById("iData2").value;
-	let data7 = document.getElementById("iData3").value;
-	let data8 = document.getElementById("iData4").value;
+function editContact(row, data1, data2, data3, data4) {
+	let data5 = row.querySelector("#iData1").value;
+	let data6 = row.querySelector("#iData2").value;
+	let data7 = row.querySelector("#iData3").value;
+	let data8 = row.querySelector("#iData4").value;
 	let tmp = { ofirstname: data1, olastname: data2, ophone: data3, oemail: data4, userid: userId, nfirstname: data5, nlastname: data6, nphone: data7, nemail: data8 };
 	let jsonPayload = JSON.stringify(tmp);
 	

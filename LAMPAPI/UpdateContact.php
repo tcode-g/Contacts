@@ -11,6 +11,11 @@
 	$newPhone = $inData["nphone"];
 	$newEmail = $inData["nemail"];
 
+	// there needs to be input validation for new inputs
+
+	// check if updaing values creates a duplicate entry
+	
+
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
     //$conn = new mysqli("localhost", "root", "", "myweb");
 	if ($conn->connect_error) 
