@@ -379,8 +379,11 @@ function handleTableEvent(e)
 	} else if(e.target.classList.contains("del_button")){
 		// getIdToDelete(e.target.closest("tr"));
 		let hiddenContactIdElement = e.target.parentElement.parentElement;
-		let contactId = hiddenContactIdElement.getAttribute("contactid")
-		deleteContact(contactId);
+		let contactId = hiddenContactIdElement.getAttribute("contactid");
+		// double check the user wants to delete this contact entry
+		if (confirm("Are you sure you want to delete this contact?")) {
+			deleteContact(contactId);
+		}
 	}
 }
 
