@@ -271,7 +271,7 @@ function toggleAuth(mode)
 function getAllContacts(dOffset)
 {
 	console.log("fick");
-	document.getElementById("search").addEventListener('input', function() { search(currentOffset, false); }, false);
+	document.getElementById("search").addEventListener('input', function() { search(currentOffset, true); }, false);
 	let tmp = {UserId:userId, limit:limit, offset:dOffset};
 	let jsonPayload = JSON.stringify( tmp );
 
@@ -636,7 +636,7 @@ function handlePaginationEvent(e, page, pageLimit, caller)
 	if(caller == "getAllContacts"){
 		getAllContacts(currentOffset);
 	} else if (caller == "search"){
-		search(currentOffset, true);
+		search(currentOffset, false);
 	}
 
 
