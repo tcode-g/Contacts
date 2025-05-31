@@ -496,11 +496,12 @@ function search(dOffset)
 				//successful
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log("Successful lookup: ", jsonObject);
-				if(!jsonObject.error)
+				let data = [];
+				if(jsonObject.error)
 				{
-					let data = jsonObject.contacts;
-					generateTable(data, currentOffset, jsonObject.total[0].total_count, "search");
+					data = jsonObject.contacts;
 				}
+				generateTable(data, currentOffset, jsonObject.total[0].total_count, "search");
 			}
 		};
 		xhr.send(jsonPayload);
