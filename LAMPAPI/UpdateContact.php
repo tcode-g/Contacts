@@ -42,7 +42,7 @@ if ($conn->connect_error) {
 } else {
 	// check if updaing values creates a duplicate entry
 	$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserId = ? AND FirstName = ? AND LastName = ? AND Phone = ? AND Email = ?;");
-	$stmt->bind_param("issss", $userId, $oldFirstName, $oldLastName, $oldPhone, $oldEmail);
+	$stmt->bind_param("issss", $userId, $newFirstName, $newLastName, $newPhone, $newEmail);
 	$stmt->execute();
 
 	$result = $stmt->get_result();
