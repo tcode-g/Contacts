@@ -110,7 +110,7 @@ function signup()
 				let jsonObject = JSON.parse(xhr.responseText);
 				eFlag = jsonObject.flag;
 
-				if (eFlag > 0)
+				if (eFlag > 0 || jsonObject.error)
 				{
 					document.getElementById("signUpResult").innerHTML = "User already exists";
 					return;

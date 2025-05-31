@@ -28,7 +28,6 @@ if ($conn->connect_error) {
 	} else {
 		$retValue = json_encode(["error"=> true, "error_message" => "No records found."]);
 		sendResultInfoAsJson($retValue);
-		// returnWithError("No Records Found");
 	}
 
 	$stmt->close();
@@ -47,10 +46,10 @@ function sendResultInfoAsJson($obj)
 	echo $obj;
 }
 
-function returnWithError($err)
+function returnWithError( $err )
 {
-	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-	sendResultInfoAsJson($retValue);
+	$retValue = '{"error":" true, "error_message": ' . $err . '"}';
+	sendResultInfoAsJson( $retValue );
 }
 
 function returnWithInfo($firstName, $lastName, $id)

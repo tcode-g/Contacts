@@ -49,7 +49,7 @@ if ($conn->connect_error) {
 	if ($result->num_rows > 0) {
 		$stmt->close();
 		$conn->close();
-		return returnWithError("Duplicate contact already exists");
+		return returnWithError("Duplicate contact exists.");
 	}
 
 	$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE UserId = ? AND FirstName = ? AND LastName = ? AND Phone = ? AND Email = ? ");

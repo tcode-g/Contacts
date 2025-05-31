@@ -18,8 +18,6 @@ if ($conn->connect_error) {
     if (mysqli_affected_rows($conn) > 0) {
         returnWithSuccess();
     } else {
-        // $retVal = json_encode(["error" => true, "error_message" => "Contact not found."]);
-        // returnWithError("Contact not found");
         returnWithError("Contact not found.");
 
     }

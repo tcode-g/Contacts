@@ -15,10 +15,10 @@ if ($conn->connect_error) {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
-		$retValue = json_encode(["UserIsFound" => true, "message" => "Records found."]);
+		$retValue = json_encode(["error" => false, "UserIsFound" => true, "message" => "Records found."]);
 		sendResultInfoAsJson($retValue);
 	} else {
-		$retValue = json_encode(["UserIsFound"=> false, "message" => "No records found."]);
+		$retValue = json_encode(["error" => true, "UserIsFound"=> false, "message" => "No records found."]);
 		sendResultInfoAsJson($retValue);
 	}
 
@@ -41,7 +41,7 @@ function sendResultInfoAsJson($obj)
 
 function returnWithError($err)
 {
-	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+	$retValue = json_encode(["error" => true, "error_message"=> $err]);
 	sendResultInfoAsJson($retValue);
 }
 

@@ -72,15 +72,15 @@ function sendResultInfoAsJson($obj)
 	echo $obj;
 }
 
-function returnWithError($err)
-{
-	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-	sendResultInfoAsJson($retValue);
-}
 
+function returnWithError( $err )
+{
+	$retValue = '{"error": true, "error_message": ' . $err . '"}';
+	sendResultInfoAsJson( $retValue );
+}
 function returnWithInfo($firstName, $lastName, $id)
 {
-	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+	$retValue = '{"error": false, "id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 	sendResultInfoAsJson($retValue);
 }
 ?>
