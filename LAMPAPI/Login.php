@@ -1,10 +1,25 @@
 <?php
 
+include("inputValidation.php");
+
 $inData = getRequestInfo();
 
-$id = 0;
-$firstName = "";
-$lastName = "";
+function checkIsValid($arr, $key) {
+	$value = $arr[$key];
+	if (!isValidInput($value)) {
+		returnWithError('Invalid ' . $key);
+		return false;
+	}
+
+	return true;
+}
+
+if (!checkIsValid($inData, "login")) {
+	return;
+}
+if (!checkIsValid($inData, "password")) {
+	return;
+}
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {

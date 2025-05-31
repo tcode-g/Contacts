@@ -15,12 +15,33 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, Phone, Email,  UserId) VALUES(?,?,?,?,?)");
-		$stmt->bind_param("ssssi",$firstName, $lastName, $phone, $email, $userId);
-		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithSuccess();
+		// Check if contact already exists for this user
+		$checkStmt = $conn->prepare("
+		SELECT ID FROM Contacts 
+		WHERE UserId = ? AND
+		FirstName = ? AND 
+		LastName = ? AND 
+		Phone = ? AND
+		Email = ?");
+		$checkStmt->bind_param("issss", $userId, $firstName, $lastName, $phone, $email);
+		$checkStmt->execute();
+		$checkStmt->store_result();
+
+		if ($checkStmt->num_rows > 0) {
+			// contact already exists, insertion is omitted
+			$checkStmt->close();
+			$conn->close();
+			returnWithError("Contact Already Exists");
+		} else {
+			$checkStmt->close();
+			// contact doesn't exist and is inserted
+			$stmt = $conn->prepare("INSERT INTO Contacts (FirstName, LastName, Phone, Email,  UserId) VALUES(?,?,?,?,?)");
+			$stmt->bind_param("ssssi",$firstName, $lastName, $phone, $email, $userId);
+			$stmt->execute();
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
+		}
 	}
 
 	function getRequestInfo()

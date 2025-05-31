@@ -5,6 +5,8 @@ $inputData = getRequestInfo();
 $userId = $inputData['userid'];
 $contactId = $inputData['id'];
 
+# check if both userId and contactId are numeric with is_numeric()
+
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
