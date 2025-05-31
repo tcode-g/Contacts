@@ -501,7 +501,7 @@ function search(dOffset)
 				if(!jsonObject.error)
 				{
 					data = jsonObject.contacts;
-					if(typeof jsonObject.total[0].total_count !== "undefined"){
+					if(typeof jsonObject.total[0]?.total_count){
 						total_count = jsonObject.total[0].total_count;
 					}
 				}
