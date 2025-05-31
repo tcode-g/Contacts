@@ -566,6 +566,7 @@ function generateTable(jData, offset, count, caller)
 	let pageLimit = Math.ceil(count / limit);
 
 	if(pageLimit == 0){
+		page = 1;
 		pageLimit =  1;
 	}
 	
