@@ -13,9 +13,17 @@ let currentOffset = 0;
 
 function getKey(e)
 {
-	if(e.key == "Enter"){
-		doLogin();
-	}
+    if (e.key === "Enter") 
+	{
+        const signupDiv = document.getElementById("signupDiv");
+        if (signupDiv.style.display !== "none") 
+		{
+            signup();
+        } else 
+		{
+            doLogin();
+        }
+    }
 }
 
 function doLogin()
@@ -300,73 +308,78 @@ function getAllContacts(dOffset)
 		//document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
 }
+
 function loadContactForm()
 {
-	let element = document.getElementById("addContact");
+    let element = document.getElementById("addContact");
 
-	// Case where the form is already loaded
-	if (document.getElementById("sub"))
-	{
-		return;
-	}
+    // Case where the form is already loaded
+    if (document.getElementById("sub"))
+    {
+        return;
+    }
 
 
-	let form = `<div class="formRow">
-        			<input type="text" id="first" class="formInput" placeholder="First Name" name="firstName" />
-        			<input type="text" id="last" class="formInput" placeholder="Last Name" name="lastName" />
-        			<input type="text" id="phone" class="formInput" placeholder="XXX-XXX-XXXX" name="phone" />
-        			<input type="text" id="email" class="formInput" placeholder="username@email.com" name="email" />
-      			</div>
+    let form = `<div class="formRow">
+                    <input type="text" id="first" class="formInput" placeholder="First Name" name="firstName" />
+                    <input type="text" id="last" class="formInput" placeholder="Last Name" name="lastName" />
+                    <input type="text" id="phone" class="formInput" placeholder="XXX-XXX-XXXX" name="phone" />
+                    <input type="text" id="email" class="formInput" placeholder="username@email.com" name="email" />
+                  </div>
 
-				<button type="button" id="sub" class="buttons">Submit</button>`;
+                <button type="button" id="sub" class="buttons">Submit</button>`;
 
-		
-	element.insertAdjacentHTML("beforeend", form);
+        
+    element.insertAdjacentHTML("beforeend", form);
 
-	document.getElementById("sub").addEventListener('click', function(){ addNewContact(); }, false);
-	
+    document.getElementById("sub").addEventListener('click', function(){ addNewContact(); }, false);
+    
 }
 
 function addNewContact()
 {
-	//e.preventDefault();
-	let firstName = document.getElementById("first").value;
-	let lastName = document.getElementById("last").value;
-	let zPhone = document.getElementById("phone").value;
-	let zEmail = document.getElementById("email").value;
+    //e.preventDefault();
+    let firstName = document.getElementById("first").value;
+    let lastName = document.getElementById("last").value;
+    let zPhone = document.getElementById("phone").value;
+    let zEmail = document.getElementById("email").value;
 
-	let tmp = {firstname:firstName, 
-		       lastname:lastName, 
-			   phone:zPhone, 
-			   email:zEmail, 
-			   userid:userId};
-	let jsonPayload = JSON.stringify( tmp );
+    let tmp = {firstname:firstName, 
+               lastname:lastName, 
+               phone:zPhone, 
+               email:zEmail, 
+               userid:userId};
+    let jsonPayload = JSON.stringify( tmp );
 
-	console.log("Adding contact: ", jsonPayload);
+    console.log("Adding contact: ", jsonPayload);
 
-	let url = urlBase + '/AddContact.' + extension;
-	
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				document.getElementById("addContact").innerHTML = "";
-				getAllContacts(currentOffset);
-				switchMode('search'); // switch to search mode when you hit submit, feels more natural
-			}
+    let url = urlBase + '/AddContact.' + extension;
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                // Clear input fields
+                document.getElementById("first").value = "";
+                document.getElementById("last").value = "";
+                document.getElementById("phone").value = "";
+                document.getElementById("email").value = "";
 
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		//failed or contact already existed
-	}
+                getAllContacts(currentOffset);
+            }
+
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        //failed or contact already existed
+    }
 }
 
 function handleTableEvent(e)
@@ -569,7 +582,7 @@ function generateTable(jData, offset, count, caller)
 		offset = -1;
 	}
 	
-	table += `<span>Showing entry ${offset + 1} to ${jData.length + temp} out of ${count} total entries<br></span>`;
+	table += `<span class = "page-info">Showing entry ${offset + 1} to ${jData.length + temp} out of ${count} total entries<br></span>`;
 	let page = offset / limit + 1;
 	let pageLimit = Math.ceil(count / limit);
 

@@ -105,6 +105,86 @@ body
 
 
 /* || contacts.html */
+
+
+/* Removes the default spinner on number inputs */
+input::-webkit-outer-spin-button, 
+input::-webkit-inner-spin-button
+{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Removes the default spinner on number inputs (mozilla specifically) */
+input[type=number]
+{
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.page-info
+{
+    display: block;
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #FC6E51;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+#pagination
+{
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem auto;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #FC6E51;
+    padding: 1rem;
+    background-color: #1e1e3f;
+    border-radius: 0.8rem;
+    width: fit-content;
+    min-width: 0;
+}
+
+#pagination input[type="number"]
+{
+    width: 8ch !important;
+    padding: 0.4rem 0.2rem;
+    font-size: 1.3rem;
+    font-family: 'Orbitron', sans-serif;
+    background-color: #161631;
+    color: #FC6E51;
+    border: 1px solid #FC6E51;
+    border-radius: 0.4rem;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#pagination button
+{
+    font-weight: bold;
+    padding: 0.6rem 1rem;
+    font-size: 1.2rem;
+    border: 1px solid #FC6E51;
+    border-radius: 0.5rem;
+    background-color: #161631;
+    color: #FC6E51;
+    font-family: 'Orbitron', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#pagination button:hover
+{
+    background-color: #FC6E51;
+    color: #161631;
+}
+
 .update_text
 {
     padding: 0.5rem 1rem;
