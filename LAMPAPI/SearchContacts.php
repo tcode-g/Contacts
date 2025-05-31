@@ -45,7 +45,7 @@ if ($conn->connect_error) {
 		$retValue = json_encode(["error" => false, "contacts" => $contacts, "total" => $total]);
 		sendResultInfoAsJson($retValue);
 	} else {
-		$retValue = json_encode(["error"=> true, "error_message" => "No records found.", "total => 0]);
+		$retValue = json_encode(["error"=> true, "error_message" => "No records found.", "total => $total]);
 		sendResultInfoAsJson($retValue);
 	}
 	
