@@ -271,7 +271,7 @@ function toggleAuth(mode)
 function getAllContacts(dOffset)
 {
 	console.log("fick");
-	document.getElementById("search").addEventListener('input', function() { search(currentOffset); }, false);
+	document.getElementById("search").addEventListener('input', function() { search(currentOffset, false); }, false);
 	let tmp = {UserId:userId, limit:limit, offset:dOffset};
 	let jsonPayload = JSON.stringify( tmp );
 
@@ -477,9 +477,12 @@ function getIdToDelete(row)
  * 
  * Generates table
  */
-function search(dOffset)
+function search(dOffset, resetOffset)
 {
-
+	if(resetOffset){
+		dOffset = 0;
+	}
+	
 	let searchString = document.getElementById("search").value;
 	
 	let tmp = {userid: userId, 
@@ -633,7 +636,7 @@ function handlePaginationEvent(e, page, pageLimit, caller)
 	if(caller == "getAllContacts"){
 		getAllContacts(currentOffset);
 	} else if (caller == "search"){
-		search(currentOffset)
+		search(currentOffset, true);
 	}
 
 
