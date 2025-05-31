@@ -540,6 +540,7 @@ function deleteContact(contactId)
 }
 function generateTable(jData, offset, count, caller)
 {
+	let temp = offset;
 	let table = ""; 
 	table += "<table id='contacts' border='2' cellspacing='1' cellpadding='8' class='table'>";
 	table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th><th></th></tr>";	
@@ -560,7 +561,7 @@ function generateTable(jData, offset, count, caller)
 		offset = -1;
 	}
 	
-	table += `<span>Showing entry ${offset + 1} to ${jData.length + offset} out of ${count} total entries<br></span>`;
+	table += `<span>Showing entry ${offset + 1} to ${jData.length + temp} out of ${count} total entries<br></span>`;
 	let page = offset / limit + 1;
 	let pageLimit = Math.ceil(count / limit);
 
