@@ -556,10 +556,18 @@ function generateTable(jData, offset, count, caller)
 	}
 	table += "</tr></table>";
 
+	if(count == 0){
+		offset = -1;
+	}
+	
 	table += `<span>Showing entry ${offset + 1} to ${jData.length + offset} out of ${count} total entries<br></span>`;
 	let page = offset / limit + 1;
 	let pageLimit = Math.ceil(count / limit);
 
+	if(pageLimit == 0){
+		pageLimit =  1;
+	}
+	
 	if(page == 1){
 		table += `<span id="pagination">
 		<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
@@ -591,6 +599,10 @@ function generateTable(jData, offset, count, caller)
 
 function handlePaginationEvent(e, page, pageLimit, caller)
 {
+	if(pageLimit == 1){
+		return;
+	}
+	
 	console.log(document.getElementById(e.target.id).value);
 	console.log(e.target.value);
 	console.log(pageLimit);
