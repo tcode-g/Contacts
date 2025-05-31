@@ -35,7 +35,7 @@ if ($conn->connect_error) {
 		Email LIKE ? OR
 		CONCAT(FirstName, ' ', LastName) LIKE ?
 	) ORDER BY FirstName, LastName ");
-    $stmtz->bind_param("isssssii", $userId, $search, $search, $search, $search, $search, $limit, $offset);
+    $stmtz->bind_param("isssss", $userId, $search, $search, $search, $search, $search);
     $stmtz->execute();
     $resultz = $stmtz->get_result();
 	
