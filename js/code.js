@@ -452,7 +452,7 @@ function displayUpdateError(msg, msFade) {
     // Optional: fully hide the element after fade
     setTimeout(() => {
         el.style.display = "none";
-    }, msFade + 4000); // 1s = fade duration
+    }, msFade + 2000);
 }
 
 function editContact(row, data1, data2, data3, data4) {
@@ -476,7 +476,7 @@ function editContact(row, data1, data2, data3, data4) {
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log("Update object response: ", jsonObject);
 				if (jsonObject.error) {
-					displayUpdateError(jsonObject.error_message, 1000);
+					displayUpdateError(jsonObject.error_message, 4000);
 				}
 				getAllContacts(currentOffset); //update table
 			}
