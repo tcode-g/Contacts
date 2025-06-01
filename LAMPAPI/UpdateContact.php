@@ -14,26 +14,9 @@ $newPhone = $inData["nphone"];
 $newEmail = $inData["nemail"];
 
 // there needs to be input validation for new inputs
-if (!checkIsValid($inData, "nfirstname")) {
+if (!validateUpdateData($inData)) {
 	return;
 }
-if (!checkIsValid($inData, "nlastname")) {
-	return;
-}
-if (!checkIsValid($inData, "nphone")) {
-	return;
-}
-if (!checkIsValid($inData, "nemail")) {
-	return;
-}
-
-if (!isValidPhone($newPhone)){ 
-	return returnWithError("Invalid phone format.");
-}
-if (!isValidEmail($newEmail)){ 
-	return returnWithError("Invalid email format.");
-}
-
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 //$conn = new mysqli("localhost", "root", "", "myweb");
@@ -81,14 +64,22 @@ function returnWithSuccess() {
 	sendResultInfoAsJson($retValue);
 }
 
-function checkIsValid($arr, $key) {
-	$value = $arr[$key];
-	if (!isValidInput($value)) {
-		returnWithError('Invalid ' . $key);
+function validateUpdateData($requestData) {
+	$newFirstName = $requestData["nfirstname"];
+	if (!isValidInput($newFirstName)) {
+		returnWithError('A contact needs a first name.');
 		return false;
 	}
-
-	return true;
+	$newEmail = $requestData["nemail"];
+	if (isValidInput($newEmail) && !isValidEmail($newEmail)) {
+		returnWithError('Invalid Email: ' . $newEmail);
+		return false;
+	}
+	$newPhone = $requestData["nphone"];
+	if (isValidInput($newEmail) && !isValidPhone($newPhone)) {
+		returnWithError('Invalid Phone number: ' . $newPhone);
+		return false;
+	}
 }
 
 ?>

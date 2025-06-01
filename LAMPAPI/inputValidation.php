@@ -1,9 +1,7 @@
 <?php
 
-function isValidPhone($phone)
-{
-    $result = preg_match("/^\d{3}-\d{3}-\d{4}$/", $phone);
-    return $result ? true : false;
+function isValidPhone($input) {
+    return preg_match('/^\d{7,17}$/', $input) === 1;
 }
 function isValidEmail($email)
 {
