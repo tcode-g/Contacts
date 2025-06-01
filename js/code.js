@@ -606,39 +606,38 @@ function generateTable(jData, offset, count, caller)
 
 	if(count == 0){
 		offset = -1;
-	}
-	
-	table += `<span class = "page-info">Showing entry ${offset + 1} to ${jData.length + temp} out of ${count} total entries<br></span>`;
-	let page = offset / limit + 1;
-	let pageLimit = Math.ceil(count / limit);
-
-	if(pageLimit == 0){
-		page = 1;
-		pageLimit =  1;
-	}
-	
-	if(page == 1){
-		table += `<span id="pagination">
-		<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
-		<button id="jump">Jump To</button> 
-		<button id="next">Next</button>
-		</span>`;
-	} else if(page == pageLimit){
-		table += `<span id="pagination">
-		<button id="prev">Previous</button>
-		<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
-		<button id="jump">Jump To</button> 
-		</span>`;
 	} else {
-		table += `<span id="pagination">
-		<button id="prev">Previous</button>
-		<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
-		<button id="jump">Jump To</button> 
-		<button id="next">Next</button>
-		</span>`;
+		table += `<span class = "page-info">Showing entry ${offset + 1} to ${jData.length + temp} out of ${count} total entries<br></span>`;
+		let page = offset / limit + 1;
+		let pageLimit = Math.ceil(count / limit);
+
+		if(pageLimit == 0){
+			page = 1;
+			pageLimit =  1;
+		}
+		
+		if(page == 1){
+			table += `<span id="pagination">
+			<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
+			<button id="jump">Jump To</button> 
+			<button id="next">Next</button>
+			</span>`;
+		} else if(page == pageLimit){
+			table += `<span id="pagination">
+			<button id="prev">Previous</button>
+			<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
+			<button id="jump">Jump To</button> 
+			</span>`;
+		} else {
+			table += `<span id="pagination">
+			<button id="prev">Previous</button>
+			<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
+			<button id="jump">Jump To</button> 
+			<button id="next">Next</button>
+			</span>`;
+		}
 	}
 
-	
 	document.getElementById("contactTable").innerHTML = table;
 	let tableId = document.getElementById("contacts");
 	tableId.addEventListener('click', function(e) { handleTableEvent(e); }, false);
