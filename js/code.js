@@ -285,7 +285,7 @@ function toggleAuth(mode)
 //logic for contact list page
 function getAllContacts(dOffset)
 {
-	console.log("fick");
+	console.log("Getting all contacts");
 	document.getElementById("search").addEventListener('input', function() { search(currentOffset, true); }, false);
 	let tmp = {UserId:userId, limit:limit, offset:dOffset};
 	let jsonPayload = JSON.stringify( tmp );
@@ -571,6 +571,11 @@ function deleteContact(contactId)
 }
 function generateTable(jData, offset, count, caller)
 {
+	console.log("GenerateTable called");
+	console.log("jdata: ", jData);
+	console.log("offset: ", offset);
+	console.log("count: ", count);
+	console.log("caller: ", caller);
 	let temp = offset;
 	let table = ""; 
 	table += "<table id='contacts' border='2' cellspacing='1' cellpadding='8' class='table'>";
