@@ -76,7 +76,7 @@ function validateUpdateData($requestData) {
 		return false;
 	}
 	$newPhone = $requestData["nphone"];
-	if (isValidInput($newEmail) && !isValidPhone($newPhone)) {
+	if (isValidInput($newPhone) && !isValidPhone($newPhone)) {
 		returnWithError('Invalid Phone number: ' . $newPhone);
 		return false;
 	}
