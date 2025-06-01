@@ -476,7 +476,7 @@ function editContact(row, data1, data2, data3, data4) {
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log("Update object response: ", jsonObject);
 				if (jsonObject.error) {
-					displayUpdateError(jsonObject.error_message, 5000);
+					displayUpdateError(jsonObject.error_message, 1000);
 				}
 				getAllContacts(currentOffset); //update table
 			}

@@ -564,7 +564,7 @@ input[type="text"],input[type="password"]
 
 .fade-message {
     opacity: 1;
-    transition: opacity 1s ease-out;
+    transition: opacity 4s ease-out;
     display: block;
 }
 
