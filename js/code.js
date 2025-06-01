@@ -304,9 +304,14 @@ function getAllContacts(dOffset)
 				console.log("Get all contacts response: ", jsonObject);
 				jData = jsonObject.contacts;
 				if (jData) {
+					console.log("Generating populated table");
 					generateTable(jData, dOffset, jsonObject.total[0].total_count, "getAllContacts");					
+				} else {
+					console.log("Generating empty table");
+					generateTable([], dOffset, 0, "getAllContacts");
 				}
-			}
+			
+			};
 		};
 		xhr.send(jsonPayload);
 	}
@@ -576,21 +581,27 @@ function generateTable(jData, offset, count, caller)
 	console.log("offset: ", offset);
 	console.log("count: ", count);
 	console.log("caller: ", caller);
+
 	let temp = offset;
 	let table = ""; 
 	table += "<table id='contacts' border='2' cellspacing='1' cellpadding='8' class='table'>";
-	table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th><th></th></tr>";	
-	for( let row=0; row<jData.length; row++ )
-	{
-		table += `<tr contactid=${jData[row].ID} >
-		<td>${jData[row].FirstName}</td>
-		<td>${jData[row].LastName}</td>
-		<td>${jData[row].Phone}</td>
-		<td>${jData[row].Email}</td>
-		<td><button class="edit_button">Update</button> <button class="del_button">Delete</button></td>
-		</tr>`;
-		
+	table += "<tr><th>FirstName</th><th>LastName</th><th>Phone</th><th>Email</th><th></th></tr>";
+	
+	if (jData.length == 0) {
+		table += `<tr><td colspan="5" style="text-align:center;">No contacts found</td></tr>`;
+	} else {
+		for( let row=0; row<jData.length; row++ ) {	
+			table += `<tr contactid=${jData[row].ID} >
+			<td>${jData[row].FirstName}</td>
+			<td>${jData[row].LastName}</td>
+			<td>${jData[row].Phone}</td>
+			<td>${jData[row].Email}</td>
+			<td><button class="edit_button">Update</button> <button class="del_button">Delete</button></td>
+			</tr>`;
+		}
 	}
+
+	
 	table += "</tr></table>";
 
 	if(count == 0){
