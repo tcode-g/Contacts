@@ -80,6 +80,7 @@ function validateUpdateData($requestData) {
 		returnWithError('Invalid Phone number: ' . $newPhone);
 		return false;
 	}
+	return true;
 }
 
 ?>
