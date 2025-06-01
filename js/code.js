@@ -302,17 +302,18 @@ function getAllContacts(dOffset)
 			{
 				//document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
+				console.log("Get all contacts response: ", jsonObject);
 				jData = jsonObject.contacts;
-				generateTable(jData, dOffset, jsonObject.total[0].total_count, "getAllContacts");
-				console.log(jData);
-
+				if (jData) {
+					generateTable(jData, dOffset, jsonObject.total[0].total_count, "getAllContacts");					
+				}
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		//document.getElementById("colorSearchResult").innerHTML = err.message;
+		console.log("Error caught: ", err);
 	}
 }
 
