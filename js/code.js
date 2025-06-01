@@ -300,7 +300,6 @@ function getAllContacts(dOffset)
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				//document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log("Get all contacts response: ", jsonObject);
 				jData = jsonObject.contacts;
@@ -372,6 +371,8 @@ function addNewContact()
         {
             if (this.readyState == 4 && this.status == 200) 
             {
+				let jsonObject = JSON.parse( xhr.responseText );
+				console.log("Successfully contact response: ", jsonObject);
                 // Clear input fields
                 document.getElementById("first").value = "";
                 document.getElementById("last").value = "";
