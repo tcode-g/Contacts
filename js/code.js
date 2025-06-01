@@ -452,7 +452,7 @@ function displayUpdateError(msg, msFade) {
     // Optional: fully hide the element after fade
     setTimeout(() => {
         el.style.display = "none";
-    }, msFade + 1000); // 1s = fade duration
+    }, msFade + 4000); // 1s = fade duration
 }
 
 function editContact(row, data1, data2, data3, data4) {
