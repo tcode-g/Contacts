@@ -455,6 +455,7 @@ function editContact(row, data1, data2, data3, data4) {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				//successful
+				console.log("update req resp: ", xhr.responseText);
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log("Update object response: ", jsonObject);
 				getAllContacts(currentOffset); //update table
