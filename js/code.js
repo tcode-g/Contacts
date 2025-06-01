@@ -45,13 +45,11 @@ function doLogin()
 		document.getElementById("loginResult").innerHTML = "Missing 'Password' field";
 		return;
 	} 
-
 	
 	var hash = md5(password);
 
 	document.getElementById("loginResult").innerHTML = "";
 
-	// let tmp = {login:login,password:password};
 	var tmp = { login: login, password: hash };
 	let jsonPayload = JSON.stringify(tmp);
 
@@ -67,7 +65,8 @@ function doLogin()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
-				userId = jsonObject.id;
+				console.log("Response for login attempt: ", jsonObject);
+				let userId = jsonObject.id;
 
 				if (userId < 1)
 				{
@@ -123,8 +122,8 @@ function signup()
 			if (this.readyState == 4 && this.status == 200)
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
-				eFlag = jsonObject.flag;
-
+				let eFlag = jsonObject.flag;
+				console.log("Reponse for signup attempt: ", jsonObject);
 				if (eFlag > 0 || jsonObject.error)
 				{
 					document.getElementById("signUpResult").innerHTML = "User already exists";
@@ -136,6 +135,7 @@ function signup()
 				}
 			}
 		};
+		console.log("eFlag upon sending request: ", eFlag);
 		xhr.send(jsonPayload);
 	}
 	catch (err)
@@ -408,7 +408,7 @@ function handleTableEvent(e)
 }
 
 function updateContact(row){
-	console.log(row);
+	console.log("Row being updated: ", row);
 	console.log(row instanceof HTMLTableRowElement);
 	let oldData1 = row.cells[0].innerText;
 	let oldData2 = row.cells[1].innerText;
@@ -449,10 +449,11 @@ function editContact(row, data1, data2, data3, data4) {
 			if (this.readyState == 4 && this.status == 200) {
 				//successful
 				let jsonObject = JSON.parse( xhr.responseText );
-				console.log(jsonObject);
+				console.log("Update object response: ", jsonObject);
 				getAllContacts(currentOffset); //update table
 			}
 		};
+		console.log("Sending update contact payload: ", jsonPayload);
 		xhr.send(jsonPayload);
 	}
 	catch (err) {
@@ -553,13 +554,13 @@ function deleteContact(contactId)
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				//successful
-				console.log(contactId);
-				console.log(xhr.responseText);
+				console.log("Successfully deleted contact: ", contactId);
 				let jsonObject = JSON.parse( xhr.responseText );
-				console.log(jsonObject);
+				console.log("Response from delete attempt: ", jsonObject);
 				getAllContacts(currentOffset);
 			}
 		};
+		console.log("Sending Delete contact payload: ", jsonPayload);
 		xhr.send(jsonPayload);
 	}
 	catch (err) {
