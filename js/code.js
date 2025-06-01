@@ -442,15 +442,17 @@ function updateContact(row){
 function displayUpdateError(msg, msFade) {
 	let el = document.getElementById("updateErrorMsg");
 	el.textContent = msg;
+	el.classList.add("fade-message");
 	el.classList.remove("hidden");
+	el.style.display = "block";
 	setTimeout(() => {
         el.classList.add("hidden"); // Start fade out
-    }, duration);
+    }, msFade);
 
     // Optional: fully hide the element after fade
     setTimeout(() => {
         el.style.display = "none";
-    }, duration + 1000); // 1s = fade duration
+    }, msFade + 1000); // 1s = fade duration
 }
 
 function editContact(row, data1, data2, data3, data4) {
