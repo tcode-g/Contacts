@@ -640,7 +640,9 @@ function generateTable(jData, offset, count, caller)
 
 	document.getElementById("contactTable").innerHTML = table;
 	let tableId = document.getElementById("contacts");
-	tableId.addEventListener('click', function(e) { handleTableEvent(e); }, false);
+	if (count >= 1) {
+		tableId.addEventListener('click', function(e) { handleTableEvent(e); }, false);
+	}
 	document.getElementById("pagination").addEventListener('click', function(e) {handlePaginationEvent(e, page, pageLimit, caller); }, false);
 
 }
