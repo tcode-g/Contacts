@@ -66,6 +66,7 @@ function doLogin()
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
 				console.log("Response for login attempt: ", jsonObject);
+				
 				let userId = jsonObject.id;
 
 				if (userId < 1)
@@ -82,6 +83,7 @@ function doLogin()
 				window.location.href = "contacts.html";
 			}
 		};
+		console.log("Sending login attempt: ", jsonPayload);
 		xhr.send(jsonPayload);
 	}
 	catch (err)
