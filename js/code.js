@@ -67,11 +67,10 @@ function doLogin()
 				let jsonObject = JSON.parse(xhr.responseText);
 				console.log("Response for login attempt: ", jsonObject);
 
-				let userId = jsonObject.id;
+				let err = jsonObject.error;
 
-				if (userId < 1)
-				{
-					document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+				if (err) {
+					document.getElementById("loginResult").textContent = "User/Password combination incorrect";
 					return;
 				}
 
