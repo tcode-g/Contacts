@@ -38,7 +38,14 @@ function doLogin()
 	if(login.length < 1 || password.length < 1){
 		document.getElementById("loginResult").innerHTML = "Missing input fields";
 		return;
-	}
+	} else if (login.length < 1) {
+		document.getElementById("loginResult").innerHTML = "Missing 'Login' field.";
+		return;
+	} else if (password.length < 1) {
+		document.getElementById("loginResult").innerHTML = "Missing 'Password' field";
+		return;
+	} 
+
 	
 	var hash = md5(password);
 
