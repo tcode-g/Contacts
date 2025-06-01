@@ -642,8 +642,9 @@ function generateTable(jData, offset, count, caller)
 	let tableId = document.getElementById("contacts");
 	if (count >= 1) {
 		tableId.addEventListener('click', function(e) { handleTableEvent(e); }, false);
+		document.getElementById("pagination").addEventListener('click', function(e) {handlePaginationEvent(e, page, pageLimit, caller); }, false);
 	}
-	document.getElementById("pagination").addEventListener('click', function(e) {handlePaginationEvent(e, page, pageLimit, caller); }, false);
+	
 
 }
 
