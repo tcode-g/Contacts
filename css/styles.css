@@ -561,3 +561,12 @@ input[type="text"],input[type="password"]
     font-family: 'Verdana', sans-serif;
     color: #161631;
 }
+
+.fade-message {
+    opacity: 1;
+    transition: opacity ease-out;
+}
+
+.fade-message-hidden {
+    opacity: 0;
+}

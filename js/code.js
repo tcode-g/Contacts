@@ -439,6 +439,20 @@ function updateContact(row){
 	//${jData[row].FirstName}
 }
 
+function displayUpdateError(msg, msFade) {
+	let el = document.getElementById("updateErrorMsg");
+	el.textContent = msg;
+	el.classList.remove("hidden");
+	setTimeout(() => {
+        el.classList.add("hidden"); // Start fade out
+    }, duration);
+
+    // Optional: fully hide the element after fade
+    setTimeout(() => {
+        el.style.display = "none";
+    }, duration + 1000); // 1s = fade duration
+}
+
 function editContact(row, data1, data2, data3, data4) {
 	let data5 = row.querySelector("#iData1").value;
 	let data6 = row.querySelector("#iData2").value;
@@ -459,6 +473,9 @@ function editContact(row, data1, data2, data3, data4) {
 				console.log("update req resp: ", xhr.responseText);
 				let jsonObject = JSON.parse( xhr.responseText );
 				console.log("Update object response: ", jsonObject);
+				if (jsonObject.error) {
+					displayUpdateError(jsonObject.error_message, 5000);
+				}
 				getAllContacts(currentOffset); //update table
 			}
 		};
