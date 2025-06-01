@@ -39,7 +39,7 @@ function doLogin()
 		document.getElementById("loginResult").innerHTML = "Missing input fields";
 		return;
 	} else if (login.length < 1) {
-		document.getElementById("loginResult").innerHTML = "Missing 'Login' field.";
+		document.getElementById("loginResult").innerHTML = "Missing 'Username' field.";
 		return;
 	} else if (password.length < 1) {
 		document.getElementById("loginResult").innerHTML = "Missing 'Password' field";
@@ -66,7 +66,7 @@ function doLogin()
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
 				console.log("Response for login attempt: ", jsonObject);
-				
+
 				let userId = jsonObject.id;
 
 				if (userId < 1)
