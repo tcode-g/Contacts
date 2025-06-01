@@ -562,6 +562,19 @@ input[type="text"],input[type="password"]
     color: #161631;
 }
 
+#updateErrorMsg {
+    display: block;
+    font-size: 1.7rem;
+    font-family: 'Orbitron', sans-serif;
+    color: #FC6E51;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+#updateErrorMsg.hidden {
+    opacity: 0;
+}
+
 .fade-message {
     opacity: 1;
     transition: opacity 2s ease-out;
