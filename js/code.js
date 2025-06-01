@@ -35,7 +35,7 @@ function doLogin()
 	let login = document.getElementById("loginName").value;
 	let password = document.getElementById("loginPassword").value;
 
-	if(login.length < 1 || password.length < 1){
+	if(login.length < 1 && password.length < 1){
 		document.getElementById("loginResult").innerHTML = "Missing input fields";
 		return;
 	} else if (login.length < 1) {
