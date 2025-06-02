@@ -66,7 +66,7 @@ function doLogin()
 			{
 				let jsonObject = JSON.parse(xhr.responseText);
 				console.log("Response for login attempt: ", jsonObject);
-
+				userId = jsonObject.id;
 				let err = jsonObject.error;
 
 				if (err) {
