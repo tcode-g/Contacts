@@ -40,7 +40,7 @@ if ($conn->connect_error) {
 	$stmtz->execute();
 	$resultz = $stmtz->get_result();
 
-	if($row_Data = $resultz->fetcg_assoc()){
+	if($row_Data = $resultz->fetch_assoc()){
 		// do nothing.
 	} else {
 		$stmtz->close();
