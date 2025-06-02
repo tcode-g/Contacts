@@ -584,3 +584,7 @@ input[type="text"],input[type="password"]
 .fade-message.hidden {
     opacity: 0;
 }
+
+.invalid {
+    border: 2px solid red;
+}
