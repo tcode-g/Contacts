@@ -48,11 +48,11 @@ if ($conn->connect_error) {
 		return returnWithError("no row found");
 	}
 	$target_Id = $row_Data['ID'];
-	$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ? ");
-	$stmt->bind_param("ssssi", $newFirstName, $newLastName, $newPhone, $newEmail, $target_Id);
-	$stmt->execute();
-	$stmt->close();
-	$conn->close();
+	$stmts = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ? ");
+	$stmts->bind_param("ssssi", $newFirstName, $newLastName, $newPhone, $newEmail, $target_Id);
+	$stmts->execute();
+	$stmts->close();
+	$conns->close();
 	returnWithSuccess();
 }
 
