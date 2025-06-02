@@ -475,7 +475,7 @@ function editContact(row, data1, data2, data3, data4) {
 	if(!checkEditContact()){
 		return;
 	}
-	
+	data3 = data3.replace(/[^0-9]/g, "");
 	let data5 = row.querySelector("#iData1").value;
 	let data6 = row.querySelector("#iData2").value;
 	let data7 = row.querySelector("#iData3").value;
