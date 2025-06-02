@@ -34,9 +34,22 @@ if ($conn->connect_error) {
 		$conn->close();
 		return returnWithError("Duplicate contact exists.");
 	}
+	
+	$stmtz = $conn->prepare("SELECT * FROM Contacts WHERE UserId = ? AND FirstName = ? AND LastName = ? AND Phone = ? AND Email = ?;");
+	$stmtz->bind_param("issss", $userId, $oldFirstName, $oldLastName, $oldPhone, $oldEmail);
+	$stmtz->execute();
+	$resultz = $stmtz->get_result();
 
-	$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE UserId = ? AND FirstName = ? AND LastName = ? AND Phone = ? AND Email = ? ");
-	$stmt->bind_param("ssssissss", $newFirstName, $newLastName, $newPhone, $newEmail, $userId, $oldFirstName, $oldLastName, $oldPhone, $oldEmail);
+	if($row_Data = $resultz->fetcg_assoc()){
+		// do nothing.
+	} else {
+		$stmtz->close();
+		$conn->close();
+		return returnWithError("no row found");
+	}
+	$target_Id = $row_Data['ID'];
+	$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ? ");
+	$stmt->bind_param("ssssi", $newFirstName, $newLastName, $newPhone, $newEmail, $target_Id);
 	$stmt->execute();
 	$stmt->close();
 	$conn->close();
