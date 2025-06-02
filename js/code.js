@@ -67,6 +67,7 @@ function doLogin()
 				let jsonObject = JSON.parse(xhr.responseText);
 				console.log("Response for login attempt: ", jsonObject);
 				userId = jsonObject.id;
+
 				let err = jsonObject.error;
 
 				if (err) {
@@ -286,7 +287,7 @@ function toggleAuth(mode)
 //logic for contact list page
 function getAllContacts(dOffset)
 {
-	console.log("Getting all contacts");
+	console.log("Getting all contacts " + userId);
 	document.getElementById("search").addEventListener('input', function() { search(currentOffset, true); }, false);
 	let tmp = {UserId:userId, limit:limit, offset:dOffset};
 	let jsonPayload = JSON.stringify( tmp );
@@ -345,13 +346,22 @@ function loadContactForm()
         
     element.insertAdjacentHTML("beforeend", form);
 
-    document.getElementById("sub").addEventListener('click', function(){ addNewContact(); }, false);
+    document.getElementById("first").addEventListener('input', function() {validateName("first"); }, false);
+	document.getElementById("last").addEventListener('input', function() {validateName("last"); }, false);
+	document.getElementById("phone").addEventListener('input', function() {validatePhone("phone"); }, false);
+	document.getElementById("email").addEventListener('input', function() {validateEmail("email"); }, false);
+	document.getElementById("sub").addEventListener('click', function(){ addNewContact(); }, false);
     
 }
 
 function addNewContact()
 {
     //e.preventDefault();
+
+	if(!checkContactForm()){
+		return;
+	}
+
     let firstName = document.getElementById("first").value;
     let lastName = document.getElementById("last").value;
     let zPhone = document.getElementById("phone").value;
@@ -429,6 +439,12 @@ function updateContact(row){
 	row.cells[3].innerHTML = `<input type="text" id="iData4" class="update_text" value="${oldData4}" size="${oldData4.length + 10}" name="email"/>`;
 	row.cells[4].innerHTML = `<button type="button" id="confirm" class="confirm_button" >Confirm</button>
 								<button type="button" id="cancel" class="cancel_button" >Cancel</button>`;
+
+	document.getElementById("iData1").addEventListener('input', function() {validateName("iData1"); }, false);
+	document.getElementById("iData2").addEventListener('input', function() {validateName("iData2"); }, false);
+	document.getElementById("iData3").addEventListener('input', function() {validatePhone("iData3"); }, false);
+	document.getElementById("iData4").addEventListener('input', function() {validateEmail("iData4"); }, false);
+
 	let confirmButton = row.querySelector("#confirm"); 
 	confirmButton.addEventListener('click', () => editContact(row, oldData1, oldData2, oldData3, oldData4), false);
 
@@ -456,6 +472,10 @@ function displayUpdateError(msg, msFade) {
 }
 
 function editContact(row, data1, data2, data3, data4) {
+	if(!checkEditContact()){
+		return;
+	}
+	
 	let data5 = row.querySelector("#iData1").value;
 	let data6 = row.querySelector("#iData2").value;
 	let data7 = row.querySelector("#iData3").value;
@@ -615,7 +635,7 @@ function generateTable(jData, offset, count, caller)
 			table += `<tr contactid=${jData[row].ID} >
 			<td>${jData[row].FirstName}</td>
 			<td>${jData[row].LastName}</td>
-			<td>${jData[row].Phone}</td>
+			<td>${displayPhone(jData[row].Phone)}</td>
 			<td>${jData[row].Email}</td>
 			<td><button class="edit_button">Update</button> <button class="del_button">Delete</button></td>
 			</tr>`;
@@ -625,12 +645,13 @@ function generateTable(jData, offset, count, caller)
 	
 	table += "</tr></table>";
 
+	let page = offset / limit + 1;
+	let pageLimit = Math.ceil(count / limit);
 	if(count == 0){
 		offset = -1;
 	} else {
 		table += `<span class = "page-info">Showing entry ${offset + 1} to ${jData.length + temp} out of ${count} total entries<br></span>`;
-		let page = offset / limit + 1;
-		let pageLimit = Math.ceil(count / limit);
+
 
 		if(pageLimit == 0){
 			page = 1;
@@ -663,6 +684,7 @@ function generateTable(jData, offset, count, caller)
 	let tableId = document.getElementById("contacts");
 	if (count >= 1) {
 		tableId.addEventListener('click', function(e) { handleTableEvent(e); }, false);
+		console.log(page);
 		document.getElementById("pagination").addEventListener('click', function(e) {handlePaginationEvent(e, page, pageLimit, caller); }, false);
 	}
 	
