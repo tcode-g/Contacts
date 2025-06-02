@@ -18,8 +18,8 @@ if (!validateUpdateData($inData)) {
 	return;
 }
 
-//$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
-$conn = new mysqli("localhost", "root", "", "myweb");
+$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+//$conn = new mysqli("localhost", "root", "", "myweb");
 if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
 } else {
