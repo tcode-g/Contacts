@@ -18,8 +18,8 @@ if (!validateUpdateData($inData)) {
 	return;
 }
 
-$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
-//$conn = new mysqli("localhost", "root", "", "myweb");
+//$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+$conn = new mysqli("localhost", "root", "", "myweb");
 if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
 } else {
@@ -34,7 +34,7 @@ if ($conn->connect_error) {
 		$conn->close();
 		return returnWithError("Duplicate contact exists.");
 	}
-	
+
 	$stmtz = $conn->prepare("SELECT * FROM Contacts WHERE UserId = ? AND FirstName = ? AND LastName = ? AND Phone = ? AND Email = ?;");
 	$stmtz->bind_param("issss", $userId, $oldFirstName, $oldLastName, $oldPhone, $oldEmail);
 	$stmtz->execute();
@@ -43,16 +43,14 @@ if ($conn->connect_error) {
 	if($row_Data = $resultz->fetch_assoc()){
 		// do nothing.
 	} else {
-		$stmtz->close();
-		$conn->close();
 		return returnWithError("no row found");
 	}
 	$target_Id = $row_Data['ID'];
-	$stmts = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ? ");
-	$stmts->bind_param("ssssi", $newFirstName, $newLastName, $newPhone, $newEmail, $target_Id);
-	$stmts->execute();
-	$stmts->close();
-	$conns->close();
+	$stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, Phone = ?, Email = ? WHERE ID = ? ");
+	$stmt->bind_param("ssssi", $newFirstName, $newLastName, $newPhone, $newEmail, $target_Id);
+	$stmt->execute();
+	$stmt->close();
+	$conn->close();
 	returnWithSuccess();
 }
 
