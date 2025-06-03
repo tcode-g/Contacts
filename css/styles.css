@@ -9,6 +9,20 @@ body
     background-color: #161631;
 }
 
+/* Labels for screen readers(sr) */
+.sr-only 
+{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 #topBar .row1
 {
     display: flex;
@@ -201,7 +215,6 @@ input[type=number]
 {
     background-color: #2a2a50;
     border-radius: 0.8rem;
-    /*box-shadow: 0 4px 15px #5f1d10; Should we keep this shadow? */
     max-height: 67vh;
     overflow-y: auto;
     font-family: 'Verdana', sans-serif;

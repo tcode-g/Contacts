@@ -660,6 +660,7 @@ function generateTable(jData, offset, count, caller)
 		
 		if(page == 1){
 			table += `<span id="pagination">
+			<label for="pages" class="sr-only">Page number</label>
 			<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
 			<button id="jump">Jump To</button> 
 			<button id="next">Next</button>
@@ -667,12 +668,14 @@ function generateTable(jData, offset, count, caller)
 		} else if(page == pageLimit){
 			table += `<span id="pagination">
 			<button id="prev">Previous</button>
+			<label for="pages" class="sr-only">Page number</label>
 			<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
 			<button id="jump">Jump To</button> 
 			</span>`;
 		} else {
 			table += `<span id="pagination">
 			<button id="prev">Previous</button>
+			<label for="pages" class="sr-only">Page number</label>
 			<input type="number" id="pages" inputmode="numeric" style="width:30px" value="${page}"/>  of ${pageLimit}
 			<button id="jump">Jump To</button> 
 			<button id="next">Next</button>
