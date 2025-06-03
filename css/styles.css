@@ -329,7 +329,7 @@ input[type=number]
     display: block;
     font-size: 2rem;
     font-weight: bold;
-    width: 25%;
+    width: 20rem;
     height: 4rem;
     border: none;
     margin-left: 1%;
@@ -352,6 +352,7 @@ input[type=number]
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    width: 60%;
 }
 
 .formInput 
@@ -438,6 +439,12 @@ input[type=number]
     margin-left: 15%;
     padding: 25px;
     background-color: #b2b2b2;
+}
+
+#addContact
+{
+    justify-content: center;
+    
 }
 
 #searchText
