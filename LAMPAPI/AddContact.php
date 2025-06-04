@@ -11,7 +11,7 @@
 
 	if ($conn->connect_error) 
 	{
-		http_response_code(500);
+		// http_response_code(500);
 		returnWithError( $conn->connect_error );
 	} 
 	else
@@ -32,7 +32,7 @@
 			// contact already exists, insertion is omitted
 			$checkStmt->close();
 			$conn->close();
-			http_response_code(409);
+			// http_response_code(409);
 			returnWithError("Contact Already Exists");
 		} else {
 			$checkStmt->close();

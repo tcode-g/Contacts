@@ -25,7 +25,7 @@ if (!validateUpdateData($inData)) {
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 //$conn = new mysqli("localhost", "root", "", "myweb");
 if ($conn->connect_error) {
-	http_response_code(500);
+	// http_response_code(500);
 	returnWithError($conn->connect_error);
 } else {
 	// check if updaing values creates a duplicate entry
@@ -37,7 +37,7 @@ if ($conn->connect_error) {
 	if ($result->num_rows > 0) {
 		$stmt->close();
 		$conn->close();
-		http_response_code(409);
+		// http_response_code(409);
 		return returnWithError("Duplicate contact exists.");
 	}
 

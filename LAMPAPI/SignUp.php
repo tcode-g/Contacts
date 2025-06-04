@@ -102,7 +102,7 @@ try {
 		// $retValue = json_encode(["error"=>true, "message"=> $err->getMessage()]);
 		// header('Content-type: application/json');
 		// echo $retValue;
-		http_response_code(400);
+		// http_response_code(400);
 		returnWithError("User already exists.", ["flag" =>1]);
 	}
 ?>

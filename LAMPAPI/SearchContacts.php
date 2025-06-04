@@ -10,7 +10,7 @@ $search = isset($inputData['searchstring']) ? "%" . $inputData['searchstring'] .
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
-	http_response_code(500);
+	// http_response_code(500);
 	returnWithError($conn->connect_error);
 } else {
     // Performs multifield search against contacts of current user

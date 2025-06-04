@@ -9,7 +9,7 @@ $offset = $inData["offset"];
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
 if ($conn->connect_error) {
-	http_response_code(500);
+	// http_response_code(500);
 	returnWithError($conn->connect_error);
 } else {
 	$stmt = $conn->prepare("SELECT * from Contacts WHERE UserId = ? ORDER BY FirstName, LastName LIMIT ? OFFSET ?");
@@ -27,7 +27,7 @@ if ($conn->connect_error) {
 		$retValue = json_encode(["error" => false, "contacts" => $contacts, "total" => $total]);
 		sendResultInfoAsJson($retValue);
 	} else {
-		http_response_code(400);
+		// http_response_code(400);
 		$retValue = json_encode(["error"=> true, "error_message" => "No records found."]);
 		sendResultInfoAsJson($retValue);
 	}
