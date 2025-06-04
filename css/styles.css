@@ -545,7 +545,7 @@ input[type="text"],input[type="password"]
 /* Login form and signup form specifically */
 .authForm
 {
-    width: clamp(10rem, 25vw, 25rem);
+    width: 25rem;
     margin: auto 2rem;
     padding: 1rem;
 }
@@ -572,6 +572,8 @@ input[type="text"],input[type="password"]
 .authForm input[type="text"],
 .authForm input[type="password"] 
 {
+    box-sizing: border-box; /* Makes sure padding and border are included in the width */
+    display: block; /* Makes the input take up the full width */
     width: 100%; /* Sizes the box nicely */
     padding: 1rem; /* Sizes the box nicely */
     margin-bottom: 1rem; /* Spaces out boxes */
