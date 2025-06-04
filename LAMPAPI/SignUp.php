@@ -15,11 +15,11 @@ function sendResultInfoAsJson($obj)
 	echo $obj;
 }
 
-function returnWithError($err, $other = null)
+function returnWithError($err, $additional = null)
 {	
 	$resArr = ["error" => true, "error_message"=> $err];
-	if ($other && is_array($other)) {
-		$resArr = array_merge($resArr, $other);
+	if ($additional && is_array($additional)) {
+		$resArr = array_merge($resArr, $additional);
 	}
 	$retValue = json_encode($resArr);
 	sendResultInfoAsJson($retValue);
@@ -102,6 +102,7 @@ try {
 		// $retValue = json_encode(["error"=>true, "message"=> $err->getMessage()]);
 		// header('Content-type: application/json');
 		// echo $retValue;
+		http_response_code(400);
 		returnWithError("User already exists.", ["flag" =>1]);
 	}
 ?>

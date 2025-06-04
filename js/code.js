@@ -289,7 +289,7 @@ function getAllContacts(dOffset)
 {
 	console.log("Getting all contacts " + userId);
 	document.getElementById("search").addEventListener('input', function() { search(currentOffset, true); }, false);
-	let tmp = {UserId:userId, limit:limit, offset:dOffset};
+	let tmp = {userid:userId, limit:limit, offset:dOffset};
 	let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/GetContacts.' + extension;

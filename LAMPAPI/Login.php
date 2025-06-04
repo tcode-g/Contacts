@@ -23,6 +23,7 @@ if (!checkIsValid($inData, "password")) {
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
+	http_response_code(500);
 	returnWithError($conn->connect_error);
 } else {
 	$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
@@ -33,7 +34,8 @@ if ($conn->connect_error) {
 	if ($row = $result->fetch_assoc()) {
 		returnWithInfo($row['firstName'], $row['lastName'], $row['ID']);
 	} else {
-		returnWithError("No Records Found");
+		http_response_code(400 );
+		returnWithError("Invalid login credentials");
 	}
 
 	$stmt->close();

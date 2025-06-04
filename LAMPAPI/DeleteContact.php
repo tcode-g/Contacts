@@ -9,6 +9,7 @@ $contactId = $inputData['id'];
 
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 if ($conn->connect_error) {
+    http_response_code(500);
 	returnWithError($conn->connect_error);
 } else {
     $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ? AND UserId = ?;");
@@ -18,6 +19,7 @@ if ($conn->connect_error) {
     if (mysqli_affected_rows($conn) > 0) {
         returnWithSuccess();
     } else {
+        http_response_code(400);
         returnWithError("Contact not found.");
 
     }
